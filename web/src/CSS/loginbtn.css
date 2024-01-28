@@ -1,0 +1,12 @@
+/* set the login button */
+.loginbtn {
+    display: inline-block;
+    text-decoration: none;
+    color: #fff;
+    font-weight: bold;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+    margin-top: 15px;
+    padding: 20px 150px;
+    background-color: #277ee0;
+}

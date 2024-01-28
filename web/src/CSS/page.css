@@ -1,0 +1,12 @@
+/*set the background and the font*/
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color:#e6e6e6 ;
+  }
+/*align the page*/
+.page {
+    max-width: 100%;
+    text-align: center;
+  }

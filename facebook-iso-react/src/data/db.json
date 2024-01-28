@@ -1,0 +1,19 @@
+[
+    {
+        "id" : 1,
+        "title" : "first post",
+        "author" : "Another Name",
+        "category" : "Sport",
+        "publication_date" : "25/1/2024" ,
+        "icon" : "umbrella.jpg"
+    },
+    {
+        "id" : 2,
+        "title" : "second post",
+        "author" : "Ori Levi",
+        "category" : "School",
+        "publication_date" : "26/1/2024",
+        "icon" : "glass.jpg"
+    }
+
+]

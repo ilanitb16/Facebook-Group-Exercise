@@ -1,33 +1,32 @@
-import './App.css';
-import Article from "../article/Article"
-import articles from "../data/db.json"
-import { useState } from 'react';
+import "./App.css";
+import Article from "../article/Article";
+import articles from "../data/db.json";
+import { useState } from "react";
+import Post from "../post/PostItem.js";
+import posts from "../post/posts.js";
+import Menu from "../menu/Menu.js";
+import Search from "../search/Search.js";
 
 function App() {
-  const [articlesList, setArticleList] = useState(articles);
 
-  const addArticle = () => {
-    const article = {
-      "id" : 3,
-      "title" : "another post",
-      "author" : "Someone Else",
-      "category" : "Food",
-      "publication_date" : "27/1/2024"
-    }
-    setArticleList([...articlesList, article])
-  }
+
+  const postList = posts.map((post, key) => {
+    return <Post {...post} key={key} />;
+  });
+
+  //const [postsList, setPostList] = useState(posts);
 
   return (
-    <div className="App">
-      <div className="button-container">
-        <button onClick={addArticle}><h1>NEW POST</h1></button>
-        <h2>search</h2>
+    <div className="container-fluid">
+      <div className="row">
+        <Menu />
+        <div className="col main-content">
+        <Search />
+          <div className="row g-2">
+            {postList}
+        </div>
       </div>
-      <div className="content">
-        {
-          articlesList.map((articles) => <Article {...articles} />)
-        }
-      </div>
+    </div>
     </div>
   );
 }

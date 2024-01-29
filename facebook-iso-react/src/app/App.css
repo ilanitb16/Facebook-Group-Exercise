@@ -8,15 +8,11 @@
   padding: 50px;
 }
 
-
-.button-container {
-  margin-left: auto;
-  justify-content: right;
-  margin-bottom: 10px; 
+.list-group-item{
+  border: 0px;
+  background-color: transparent;
 }
-
-.content {
-  text-align: center; 
-
+.list-group-item:hover{
+  background-color: lightgray;
+  cursor: pointer;
 }
-

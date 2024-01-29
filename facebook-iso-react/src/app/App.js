@@ -7,6 +7,8 @@ import posts from "../postItem/posts.js";
 import Search from "../search/Search.js";
 import { useState } from "react";
 import PostListReslts from "../postListResults/PostListResults.js";
+import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import Foo from "../Foo/Foo.js";
 
 function App() {
   const [postList, setPostList] = useState(posts);
@@ -18,11 +20,19 @@ function App() {
   return (
     <div className="container-fluid">
       <div className="row">
-        <Menu />
-        <div className="col main-content">
-          <Search doSearch={doSearch} />
-          <PostListReslts posts={postList} />
-        </div>
+        <BrowserRouter>
+          <Link to="/">Main</Link>
+          <br />
+          <Link to="/details">Details</Link>
+          <Routes>
+            <Route path="/details" element={<Menu />}></Route>
+            <Route path="/" element={<Foo />}></Route>
+          </Routes>
+          <div className="col main-content">
+            <Search doSearch={doSearch} />
+            <PostListReslts posts={postList} />
+          </div>
+        </BrowserRouter>
       </div>
     </div>
   );

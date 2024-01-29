@@ -1,47 +1,86 @@
+/* Login.css */
+
 .login-container {
+    background-color: #f0f2f5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  .login-box {
+    background-color: #fff;
+    border: 1px solid #dddfe2;
+    box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.1);
     width: 300px;
-    margin: 0 auto;
     padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    background-color: #f9f9f9;
     text-align: center;
   }
-
-  h2 {
+  
+  .login-logo {
+    width: 100px;
+    height: 100px;
+    margin: 0 auto 20px;
+    background-image: url('Facebook_Logo_2023.png'); /* Facebook logo image */
+    background-size: cover;
+  }
+  
+  .login-header {
+    font-size: 24px;
+    font-weight: 600;
     margin-bottom: 20px;
+  }
+  
+  .login-form {
+    display: flex;
+    flex-direction: column;
   }
   
   .form-group {
     margin-bottom: 15px;
-    text-align: left;
   }
   
-  label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: bold;
+  .form-group label {
+    font-size: 14px;
+    font-weight: 600;
   }
   
-  input[type="text"],
-  input[type="password"] {
-    width: 100%;
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 3px;
-  }
-  
-  button {
+  .form-group input {
     width: 100%;
     padding: 10px;
-    background-color: #007bff;
+    border: 1px solid #dddfe2;
+    border-radius: 5px;
+    font-size: 16px;
+  }
+  
+  .login-button {
+    background-color: #1877f2; /* Facebook blue color */
     color: #fff;
+    font-size: 16px;
+    font-weight: 600;
+    padding: 10px;
     border: none;
-    border-radius: 3px;
+    border-radius: 5px;
     cursor: pointer;
   }
   
-  button:hover {
-    background-color: #0056b3;
+  .login-button:hover {
+    background-color: #166fe5; /* Darker blue on hover */
+  }
+  
+  .login-footer {
+    margin-top: 20px;
+    font-size: 14px;
+    color: #65676b;
+  }
+  
+  .login-footer a {
+    color: #1877f2;
+    text-decoration: none;
+    font-weight: 600;
+  }
+  
+  .login-footer a:hover {
+    text-decoration: underline;
   }
   

@@ -1,9 +1,19 @@
-function Search() {
+import { useRef } from "react";
+
+function Search({ doSearch }) {
+  const searchBox = useRef(null);
+
+  const search = function () {
+    doSearch(searchBox.current.value);
+  };
+
   return (
     <div className="row bg-white justify-content-center">
       <div className="col-10">
         <div className="input-group mb-3 p-2">
           <input
+            ref={searchBox}
+            onKeyUp={search}
             type="text"
             className="form-control"
             placeholder="Search"

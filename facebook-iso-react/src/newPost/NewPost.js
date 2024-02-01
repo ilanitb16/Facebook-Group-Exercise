@@ -1,6 +1,6 @@
-function Foo() {
+function NewPost() {
   return (
     <div>hello world</div>
   );
 }
-export default Foo;
+export default NewPost;

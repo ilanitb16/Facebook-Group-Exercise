@@ -1,18 +1,32 @@
 
-.App {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: stretch;
-  text-align: center; 
-  padding: 50px;
+#light {
+  background-color: #fff;
 }
 
-.list-group-item{
-  border: 0px;
-  background-color: transparent;
+#dark {
+  background-color: #3e3d3e;
 }
-.list-group-item:hover{
-  background-color: lightgray;
-  cursor: pointer;
+
+#light .menu{
+  background-color: rgb(234, 234, 234);
+}
+
+#dark .menu{
+  background-color: #2b2a2b;
+}
+
+#light .search{
+  background-color: #fff;
+}
+
+#dark .search{
+  background-color: #3e3d3e;
+}
+
+#light .card{
+  background-color: #fff;
+}
+
+#dark .card{
+  background-color: #3e3d3e;
 }

@@ -1,6 +1,6 @@
 import { useRef } from "react";
 
-function Search({ doSearch }) {
+function Search({ doSearch}) {
   const searchBox = useRef(null);
 
   const search = function () {
@@ -8,15 +8,15 @@ function Search({ doSearch }) {
   };
 
   return (
-    <div className="row bg-white justify-content-center">
-      <div className="col-10">
+    <div className="row justify-content-left">
+      <div className="search col-5">
         <div className="input-group mb-3 p-2">
           <input
             ref={searchBox}
             onKeyUp={search}
             type="text"
             className="form-control"
-            placeholder="Search"
+            placeholder="Search Facebook"
             aria
             label="Search"
             aria-describedby="button-addon2"

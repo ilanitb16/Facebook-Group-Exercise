@@ -1,6 +1,6 @@
 function PostItem({ title, author, description, date, img }) {
   return (
-    <div className=" col-xl-2 col-lg-3 col-m-4 col-sm-6 p-2">
+    <div className= "col-xl-2 col-lg-3 col-m-4 col-sm-6 p-2">
       <div className="card" href="details.html">
         <img src={img} className="card-img-top" alt="..."></img>
         <div className="card-body">

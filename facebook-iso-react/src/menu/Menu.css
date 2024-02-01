@@ -1,0 +1,23 @@
+#light .home label{
+    color: black;
+}
+
+#dark .home label{
+    color: white;
+}
+
+#light .newPost label{
+    color: black;
+}
+
+#dark .newPost label{
+    color: white;
+}
+
+#light .myAccount label{
+    color: black;
+}
+
+#dark .myAccount label{
+    color: white;
+}

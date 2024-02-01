@@ -2,43 +2,72 @@
   {
     "title": "corvette c8",
     "author": "ori levi",
-    "description": "car",
-    "date": "25/1/2024",
-    "img": "/static/media/img1.727180c81b599428530d.jpg"
+    "description": "kkkkkk",
+    "date": "nnnnnnn",
+    "img" : "./img/img1.jpg"
   },
   {
     "title": "audi r8",
     "author": "ilanit berditchevski",
     "description": "car",
     "date": "26/1/2024",
-    "img": "/static/media/img2.862182833478a55f0532.jpg"
+    "img": "img/img2.jpg"
   },
   {
     "title": "mercedes gts",
     "author": "shmuel granot",
     "description": "car",
     "date": "27/1/2024",
-    "img": "/static/media/img3.110580b11d344fd7e532.jpg"
+    "img": "img/img3.jpg"
   },
   {
     "title": "chevrolet camero",
     "author": "dvir yazdi",
     "description": "car",
     "date": "28/1/2024",
-    "img": "/static/media/img4.0ef6624ee9b434313b72.jpg"
+    "img": "img/img4.jpg"
   },
   {
     "title": "aston martin",
     "author": "tzuriel luzon",
     "description": "car",
     "date": "29/1/2024",
-    "img": "/static/media/img5.e5d79526d6b1853d23c6.jpg"
+    "img": "img/img5.jpg"
   },
   {
     "title": "lamborghini aventador",
     "author": "noam leibovich",
     "description": "car",
     "date": "30/1/2024",
+    "img": "img/img6.jpg"
+  },
+  {
+    "title": "ferrari la-ferrari",
+    "author": "on kol tzabar cohen",
+    "description": "car",
+    "date": "1/2/2024",
+    "img": "/static/media/img6.dc6f8b195bdea0d25622.jpg"
+  },
+  {
+    "title": "mclaren p1",
+    "author": "noy shani",
+    "description": "car",
+    "date": "2/2/2024",
+    "img": "/static/media/img6.dc6f8b195bdea0d25622.jpg"
+  },
+  {
+    "title": "toyota supra",
+    "author": "arnon lutsky",
+    "description": "car",
+    "date": "3/2/2024",
+    "img": "/static/media/img6.dc6f8b195bdea0d25622.jpg"
+  },
+  {
+    "title": "porche carrera gt",
+    "author": "or hazav",
+    "description": "car",
+    "date": "4/2/2024",
     "img": "/static/media/img6.dc6f8b195bdea0d25622.jpg"
   }
+
 ]

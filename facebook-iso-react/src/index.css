@@ -1,8 +1,18 @@
-.list-group-item{
+:root {
+  --body_background: white;
+  --body_color: black;
+  --link_color: navy;
+}
+[data-theme="dark"] {
+  --body_background: #282c34;
+  --body_color: var(--body_color) white;
+  --link_color: cyan;
+}
+.list-group-item {
   border: 0px;
   background-color: transparent;
 }
-.list-group-item:hover{
+.list-group-item:hover {
   background-color: lightgray;
   cursor: pointer;
 }

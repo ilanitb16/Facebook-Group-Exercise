@@ -1,6 +1,10 @@
-function NewPost() {
+
+function NewPost({ onPostSubmit }) {
   return (
-    <div>hello world</div>
+    
+      <label></label>
+      
   );
 }
+
 export default NewPost;

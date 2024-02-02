@@ -8,7 +8,11 @@ function Search({ doSearch}) {
   };
 
   return (
-    <div className="row justify-content-left">
+    <div className="row">
+    <div className="col-3">
+        <label></label>
+      </div>
+    <div className="col-9 main-content">
       <div className="search col-5">
         <div className="input-group mb-3 p-2">
           <input
@@ -29,6 +33,7 @@ function Search({ doSearch}) {
             <i className="bi bi-search me-3"></i>
           </button>
         </div>
+      </div>
       </div>
     </div>
   );

@@ -1,7 +1,8 @@
 import "./Menu.css";
-import posts from "../postItem/allPosts.json";
 import img1 from "../postItem/img/img1.jpg";
 import DarkMode from "../DarkMode/DarkMode.js";
+import { BrowserRouter, Routes, Route, Link, Navigate } from "react-router-dom";
+import NewPost from "../newPost/NewPost.js";
 
 function Menu({ setPostList, postList, toggleTheme }) {
   const addPost = () => {

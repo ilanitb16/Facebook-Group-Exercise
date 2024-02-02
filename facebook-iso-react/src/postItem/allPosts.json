@@ -2,9 +2,9 @@
   {
     "title": "corvette c8",
     "author": "ori levi",
-    "description": "kkkkkk",
-    "date": "nnnnnnn",
-    "img" : "./img/img1.jpg"
+    "description": "car",
+    "date": "25/1/2024",
+    "img": "./img/img1.jpg"
   },
   {
     "title": "audi r8",
@@ -46,28 +46,28 @@
     "author": "on kol tzabar cohen",
     "description": "car",
     "date": "1/2/2024",
-    "img": "/static/media/img6.dc6f8b195bdea0d25622.jpg"
+    "img": ""
   },
   {
     "title": "mclaren p1",
     "author": "noy shani",
     "description": "car",
     "date": "2/2/2024",
-    "img": "/static/media/img6.dc6f8b195bdea0d25622.jpg"
+    "img": ""
   },
   {
     "title": "toyota supra",
     "author": "arnon lutsky",
     "description": "car",
     "date": "3/2/2024",
-    "img": "/static/media/img6.dc6f8b195bdea0d25622.jpg"
+    "img": ""
   },
   {
     "title": "porche carrera gt",
     "author": "or hazav",
     "description": "car",
     "date": "4/2/2024",
-    "img": "/static/media/img6.dc6f8b195bdea0d25622.jpg"
+    "img": ""
   }
 
 ]

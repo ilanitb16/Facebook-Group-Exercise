@@ -6,7 +6,9 @@ import React, { createContext, useState } from 'react';
 // });
 
 const initialState = {
-  user: null
+  user: {
+    authenticated: false
+  }
 }; 
 
 const UserContext = createContext(initialState.user);

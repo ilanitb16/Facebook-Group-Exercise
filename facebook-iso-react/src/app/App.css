@@ -1,8 +1,3 @@
-#light,
-#light .card,
-#light .search {
-  background-color: #fff;
-}
 
 #dark,
 #dark .card,
@@ -11,9 +6,14 @@
 }
 
 #light .menu {
-  background-color: rgb(234, 234, 234);
+  background-color: #e6e6e6;
 }
 
 #dark .menu {
   background-color: #2b2a2b;
 }
+
+#dark .social {
+  filter: invert(100%);
+}
+

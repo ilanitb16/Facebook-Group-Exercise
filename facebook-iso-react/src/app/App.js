@@ -14,12 +14,6 @@ function App() {
   };
   const [postList, setPostList] = useState(posts);
 
-  const navigateToNewPost = () => {
-    // Update the URL to /newPost
-    window.history.pushState({}, null, '/newPost');
-    // Trigger a re-render
-    setPostList([...postList]); // You might need to adjust this based on your actual data structure
-  };
   return (
     /*
           // what written- the links

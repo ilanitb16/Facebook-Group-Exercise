@@ -1,18 +1,31 @@
-function PostItem({ title, author, description, date, img }) {
+import "./PostItem.css";
+import React, { useState } from "react";
+import Social from "./social/Social";
+import EditPost from "./EditPost";
+
+
+function PostItem({ title, author, description, date, author_photo, img }) {
   return (
-    <div className="row">
-      <div className="col-3">
-        <label></label>
-      </div>
-      <div className="col-9 main-content">
+    <div className="row post">
+      <div className="col-5"></div>
+      <div className="col-6 main-content">
         <div className="card" href="details.html">
-          <img src={img} className="card-img-top" alt="..."></img>
+          <div className="row top-card">
+            <div className="col-9">
+              <p className="card-author">
+                <img src={author_photo} className="img-profile" alt="..." />
+                <b>{"@" + author}</b>
+                {" " + date}
+              </p>
+            </div>
+            <EditPost />
+          </div>
+          <img src={img} className="card-img" alt="..."></img>
           <div className="card-body">
             <h5 className="card-title">{title}</h5>
-            <p className="card-text">{author}</p>
             <p className="card-text">{description}</p>
-            <p className="card-text">{date}</p>
           </div>
+          <Social />
         </div>
       </div>
     </div>

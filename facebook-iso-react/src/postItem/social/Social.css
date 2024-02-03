@@ -1,0 +1,22 @@
+.likeButton:hover {
+    filter: invert(50%);
+    cursor: pointer;
+}
+.commentButton:hover {
+    filter: invert(50%);
+    cursor: pointer;
+}
+.shareButton:hover {
+    filter: invert(50%);
+    cursor: pointer;
+}
+
+.likeButton {
+    margin: 5px;
+}
+.commentButton {
+    margin: 5px;
+}
+.shareButton {
+    margin: 5px;
+}

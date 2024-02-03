@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { authenticateUser } from '../Auth';
 import { useContext } from 'react';
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { useUser } from '../providers/user_context';
 import '../styles/Login.css'; // Import the CSS file
 
@@ -116,7 +116,7 @@ const Login = () => {
           </button>
         </form>
         <p className="login-footer">
-          <a href="#">Forgot Password?</a> · <a href="Registration.js">Sign up for Facebook</a>
+          <a href="#">Forgot Password?</a> · <Link to="/registration">Sign up for Facebook</Link>
         </p>
       </div>
     </div>

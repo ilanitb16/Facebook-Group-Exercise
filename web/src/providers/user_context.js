@@ -1,10 +1,5 @@
 import React, { createContext, useState } from 'react';
 
-// export const UserContext = createContext({
-//     authenticated: false,
-//     setAuthenticated: (auth) => authenticated = auth
-// });
-
 const initialState = {
   user: {
     authenticated: false
@@ -18,23 +13,23 @@ const UserInitializer = createContext();
 const UserProvider = ({ children }) => {
     const [user, setUserInner] = useState();
 
-  const setUser = (user) => {
-    setUserInner(user);
-  }
+    const setUser = (user) => {
+        setUserInner(user);
+    }
 
-  const initUser = () => {
-    setUserInner(initialState.lists);
-  }
+    const initUser = () => {
+        setUserInner(initialState.lists);
+    }
 
-  return (
-    <UserContext.Provider value={user}>
-      <UserDispatch.Provider value={setUser}>
-        <UserInitializer.Provider value={initUser}>
-        {children}
-        </UserInitializer.Provider>
-      </UserDispatch.Provider>
-    </UserContext.Provider>
-  );
+    return (
+        <UserContext.Provider value={user}>
+            <UserDispatch.Provider value={setUser}>
+                <UserInitializer.Provider value={initUser}>
+                    {children}
+                </UserInitializer.Provider>
+            </UserDispatch.Provider>
+        </UserContext.Provider>
+    );
 }
 
 const useUser = () => {

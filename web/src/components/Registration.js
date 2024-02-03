@@ -1,38 +1,51 @@
 import React, { useState } from 'react';
+import { useNavigate } from "react-router-dom";
 import '../styles/Registration.css'; // Import the CSS file for registration styles
+import {users} from '../Auth.js';
+
 // Import the necessary components from react-router-dom
 
 
 function Registration() {
+    const navigate = useNavigate();
+    const [registeredUser, setRegisteredUser] = useState(null); // state variable that holds info about user
 
-const [registeredUser, setRegisteredUser] = useState(null); // state variable that holds info about user
-
-// a state var used to store data entered by user. 
-const [formData, setFormData] = useState({
-    // contains key-value pairs for different form fields
-    first_name: '',
-    last_name:'',
-    username: '',
-    password: '',
-    confirmPassword: '',
-  });
-
-const [errors, setErrors] = useState({});
-
-const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value,
+    // a state var used to store data entered by user. 
+    const [formData, setFormData] = useState({
+        // contains key-value pairs for different form fields
+        first_name: '',
+        last_name:'',
+        username: '',
+        password: '',
+        confirmPassword: '',
     });
-  };
+
+    const [errors, setErrors] = useState({});
+
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        console.log(e.target)
+        setFormData({
+        ...formData,
+        [name]: value,
+        });
+    };
 
 const handleSubmit = (e) => {
     e.preventDefault(); //  prevent page from getting reloaded (otherwise we will loose our state)
-  
+    // const user = {
+    //     username: formData.username,
+    //     password: formData.confirmPassword,
+    //     first_name: formData.first_name,
+    //     last_name: formData.last_name,
+    //   }; 
 
-// Validation function meeting facebook's password requirements:
-function validatePassword(password) {
+    // users.push(user);
+    // navigate("/login");
+    // return;
+
+    // Validation function meeting facebook's password requirements:
+    function validatePassword(password) {
     // facebook's requirments: 
     //Passwords must be at least eight characters long, and include a combination 
     // of lower and uppercase letters, special characters, and numbers.
@@ -114,7 +127,10 @@ function validateUsername(username){
         last_name: formData.last_name,
       }; 
 
-    setRegisteredUser(user); // Save the registration information 
+    users.push(user);
+    navigate("/login");
+
+    // setRegisteredUser(user); // Save the registration information 
     
     console.log('Registration data:', formData);
   }
@@ -138,7 +154,7 @@ function validateUsername(username){
           <input 
             className="registration-input"
             type="text"
-            name="userfirstname"
+            name="first_name"
             placeholder='First name'
             value={formData.first_name}
             onChange={handleChange}
@@ -147,7 +163,7 @@ function validateUsername(username){
           <input
             className="registration-input"
             type="text"
-            name="userlastname"
+            name="last_name"
             placeholder='Last name'
             value={formData.last_name}
             onChange={handleChange}
@@ -160,8 +176,8 @@ function validateUsername(username){
         <div className="form-group">
           <label></label>
           <input
-            type="numberOrMail"
-            name="numberOrMail"
+            type="text"
+            name="username"
             placeholder='username'
             value={formData.username}
             onChange={handleChange}
@@ -188,7 +204,7 @@ function validateUsername(username){
           <label></label>
           <input
             type="password"
-            name="confirmpassword"
+            name="confirmPassword"
             placeholder='confirm password'
             value={formData.confirmPassword}
             onChange={handleChange}

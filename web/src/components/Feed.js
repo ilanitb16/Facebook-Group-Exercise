@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react';
-import { useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom";
 
 import {useUser} from '../providers/user_context';
 
 const Feed = () => {
     const [user, setUser] = useUser();
-    const navigate = useNavigate()
+    const navigate = useNavigate();
 
     useEffect(() => {
         console.log("User", user);
@@ -13,7 +13,7 @@ const Feed = () => {
         if(!user?.authenticated){
             navigate("/login")
         }
-      });
+    });
 
 
     return (

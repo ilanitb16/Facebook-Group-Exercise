@@ -15,6 +15,7 @@ const Login = () => {
     if (user) {
         // Authentication successful
         setLoggedIn(true);
+        alert('You are logged in.');
       } else {
         // Authentication failed
         alert('Incorrect username or password. Please try again.');
@@ -23,34 +24,38 @@ const Login = () => {
 
   return (
     <div className="login-container">
-      {loggedIn ? (
-        <p>You are logged in!</p>
-      ) : (
-        <>
-          <h2>Login</h2>
-          <form>
-            <div className="form-group">
-              <label>Username:</label>
-              <input
-                type="text"
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
-              />
-            </div>
-            <div className="form-group">
-              <label>Password:</label>
-              <input
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-              />
-            </div>
-            <button type="button" onClick={handleLogin}>
-              Login
-            </button>
-          </form>
-        </>
-      )}
+      <div className="login-box">
+        <div className="login-logo"></div>
+        <h2 className="login-header">Log Into Facebook</h2>
+        <form className="login-form">
+          <div className="form-group">
+            <label></label> 
+            <input
+              className='login-input'
+              type="text"
+              value={username}
+              placeholder='Email or phone number'
+              onChange={(e) => setUsername(e.target.value)}
+            />
+          </div>
+          <div className="form-group">
+            <label></label>
+            <input
+              className='login-input'
+              placeholder='Password'
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+          </div>
+          <button type="button" onClick={handleLogin} className="login-button">
+            Login
+          </button>
+        </form>
+        <p className="login-footer">
+          <a href="#">Forgot Password?</a> · <a href="#">Sign up for Facebook</a>
+        </p>
+      </div>
     </div>
   );
 };

@@ -9,7 +9,7 @@
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
-    background-image: url('Facebook_Logo_2019.png'); /* Facebook logo image */
+    animation: App-logo-spin infinite 20s linear;
   }
 }
 

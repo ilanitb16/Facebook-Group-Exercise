@@ -12,6 +12,7 @@ const users = [
   
     if (user) {
       // Authentication successful
+      
       return user;
     } else {
       // Authentication failed

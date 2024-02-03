@@ -1,9 +1,14 @@
 import React, { useState } from 'react';
 import { authenticateUser } from '../Auth';
+import { useContext } from 'react';
+import { useNavigate } from "react-router-dom";
+import { useUser } from '../providers/user_context';
 import '../styles/Login.css'; // Import the CSS file
 
 
 const Login = () => {
+  const [user, setUser] = useUser();
+    const navigate = useNavigate()
 
   // useState is used to declare & manage state variables in a component
   const [username, setUsername] = useState(''); // init state variable with value = empty string ''
@@ -17,7 +22,10 @@ const Login = () => {
     if (user) {
         // Authentication successful
         setLoggedIn(true);
-        alert('You are logged in.');
+        setUser({authenticated: true});
+        navigate("/");
+
+        // alert('You are logged in.');
       } else {
         // Authentication failed
         alert('Incorrect username or password. Please try again.');

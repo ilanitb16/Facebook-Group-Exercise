@@ -15,7 +15,7 @@ function FeedPage({ postList, setPostList, toggleTheme }) {
       <Menu setPostList={setPostList} postList={postList} toggleTheme={toggleTheme} />
       <div className="col-9 main-content">
         <Search doSearch={doSearch} />
-        <PostListReslts posts={postList} />
+        <PostListReslts posts={postList} postList={postList} setPostList={setPostList} />
       </div>
     </React.Fragment>
   );

@@ -1,17 +1,22 @@
 import "./PostItem.css";
-import React, { useState } from "react";
-import { useRef } from "react";
+import React, { useState, useRef } from "react";
 
-function EditPost({ title, author, description, date, author_photo, img }) {
-  const PostEdit = ["edit", "delete"];
-  const [open, setOpen] = useState(false);
+function EditPost({ title, postList, setPostList}) {
+    const [open, setOpen] = useState(false);
   const menuRef = useRef();
   const iconRef = useRef();
+
   window.addEventListener("click", (e) => {
     if (e.target !== menuRef.current && e.target !== iconRef.current) {
       setOpen(false);
     }
   });
+
+  const removePost = () => {
+    const updatedPosts = postList.filter((post) => post.title !== title);
+    setPostList(updatedPosts);
+  };
+
   return (
     <div className="col-3 d-flex justify-content-end align-items-center">
       <div className="w-90 text-end">
@@ -24,17 +29,20 @@ function EditPost({ title, author, description, date, author_photo, img }) {
           {open && (
             <div ref={menuRef} className="absolute-left">
               <ul style={{ listStyleType: "none", padding: 0 }}>
-                {PostEdit.map((option) => (
-                  <h5 key={option}>
-                    <li onClick={() => setOpen(!open)}>{option}</li>
-                  </h5>
-                ))}
+                <li key="edit" onClick={() => setOpen(!open)} className="fs-6">
+                  <i className="bi bi-sliders"></i> Edit
+                </li>
+                <li key="delete" onClick={() => {setOpen(!open); removePost();}} className="fs-6">
+                <i class="bi bi-trash3"></i>Delete
+                </li>
               </ul>
             </div>
           )}
         </i>
       </div>
+      
     </div>
   );
 }
+
 export default EditPost;

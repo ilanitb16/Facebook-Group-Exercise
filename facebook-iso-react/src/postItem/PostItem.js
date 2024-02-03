@@ -4,7 +4,7 @@ import Social from "./social/Social";
 import EditPost from "./EditPost";
 
 
-function PostItem({ title, author, description, date, author_photo, img }) {
+function PostItem({ postList, setPostList, title, author, description, date, author_photo, img}) {
   return (
     <div className="row post">
       <div className="col-5"></div>
@@ -18,7 +18,7 @@ function PostItem({ title, author, description, date, author_photo, img }) {
                 {" " + date}
               </p>
             </div>
-            <EditPost />
+            <EditPost title={title} postList={postList} setPostList={setPostList}/>
           </div>
           <img src={img} className="card-img" alt="..."></img>
           <div className="card-body">

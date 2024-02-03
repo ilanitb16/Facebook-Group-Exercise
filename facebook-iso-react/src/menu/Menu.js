@@ -57,7 +57,7 @@ function Menu({ setPostList, postList, toggleTheme }) {
               </label>
             </span>
             <span className="badge bg-primary rounded-pill"></span>
-          </div>{" "}
+          </div>
         </li>
         <li className="list-group-item d-flex align-items-center">
           <div className="menuObject">

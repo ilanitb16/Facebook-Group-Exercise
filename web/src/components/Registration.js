@@ -8,7 +8,6 @@ import {users} from '../Auth.js';
 
 function Registration() {
     const navigate = useNavigate();
-    const [registeredUser, setRegisteredUser] = useState(null); // state variable that holds info about user
 
     // a state var used to store data entered by user. 
     const [formData, setFormData] = useState({
@@ -31,6 +30,87 @@ function Registration() {
         });
     };
 
+    // Validation function meeting facebook's password requirements:
+    function validatePassword(password) {
+        // facebook's requirments: 
+        //Passwords must be at least eight characters long, and include a combination 
+        // of lower and uppercase letters, special characters, and numbers.
+    
+        
+        // password length check
+        if (password.length < 8) {
+            return 'Password must be at least 8 characters long.';
+        }
+    
+            // at least one uppercase letter
+        if (!/[A-Z]/.test(password)) {
+            return 'Password must contain at least one uppercase letter.';
+        }
+    
+            // at least one lowercase letter
+        if (!/[a-z]/.test(password)) {
+            return 'Password must contain at least one lowercase letter.';
+        }
+    
+        // at least one digit 
+        if (!/[0-9]/.test(password)) {
+            return 'Password must contain at least one digit.';
+        }
+    
+        // at least one special character 
+        if (!/[!@#$%^&*()_+{}\[\]:;<>,.?~\\-]/.test(password)) {
+            return 'Password must contain at least one special character.';
+        }
+    
+        // all checks passed, returns empty string
+        return '';
+        }
+
+    function validateConfirmPassword(password, confirmPassword){
+        if(password === confirmPassword){
+            return '';
+        }
+        // if (confirmPassword.trim().length > 0) {
+        //     return 'Field is required';
+        // }
+        return 'Passwords are not matching';
+    }  
+    
+    // Username can be either a phone number or your email address
+    function validateUsername(username){
+        if (username && typeof username === 'string' && username.trim().length > 0) {
+            return 'Username is required.';
+        }
+        if(username.length <3){
+            return 'Username too short.';
+        }
+        if(username.length > 20){
+            return 'Username too long.';
+        }
+    
+        return null; // No problems
+    }
+
+    function validateName(name){
+    
+        if (name && typeof name === 'string' && name.trim().length > 0) {
+            return 'Name and last name are required.';
+        }
+
+        // Regular expression pattern for letters only
+        const pattern = /^[A-Za-z]+$/;
+
+        // Test if the name contains only letters
+        const containsOnlyLetters = pattern.test(name);
+
+        if(containsOnlyLetters){
+            return '';
+        }
+        else{
+            return 'Invalid input. Names must contain letters only.';
+        }
+    }
+
 const handleSubmit = (e) => {
     e.preventDefault(); //  prevent page from getting reloaded (otherwise we will loose our state)
     // const user = {
@@ -44,68 +124,13 @@ const handleSubmit = (e) => {
     // navigate("/login");
     // return;
 
-    // Validation function meeting facebook's password requirements:
-    function validatePassword(password) {
-    // facebook's requirments: 
-    //Passwords must be at least eight characters long, and include a combination 
-    // of lower and uppercase letters, special characters, and numbers.
-
-
-    // password length check
-    if (password.length < 8) {
-      return 'Password must be at least 8 characters long.';
-    }
-
-     // at least one uppercase letter
-    if (!/[A-Z]/.test(password)) {
-      return 'Password must contain at least one uppercase letter.';
-    }
-
-     // at least one lowercase letter
-    if (!/[a-z]/.test(password)) {
-      return 'Password must contain at least one lowercase letter.';
-    }
-
-    // at least one digit 
-    if (!/[0-9]/.test(password)) {
-      return 'Password must contain at least one digit.';
-    }
-
-    // at least one special character 
-    if (!/[!@#$%^&*()_+{}\[\]:;<>,.?~\\-]/.test(password)) {
-      return 'Password must contain at least one special character.';
-    }
-
-    // all checks passed, returns empty string
-    return '';
-  }
-
-// Username can be either a phone number or your email address
-function validateUsername(username){
-
-   // Regular expression for phone number 
-  const phoneNumberPattern = /^[0-9]{10}$/; // Matches 10-digit numbers
-
-  // Regular expression for Gmail address
-  const gmailPattern = /^[a-zA-Z0-9._%+-]+@gmail\.com$/;
-
-
-   // Test if the input is a phone number or a Gmail address
-   if (phoneNumberPattern.test(username)) {
-    return ''; // Valid phone number
-  } else if (gmailPattern.test(username)) {
-    return ''; // Valid Gmail address
-  } else {
-    return 'Username must be a valid phone number or Gmail address.'; //invalid input 
-  }
-  }
      
   // Validate form fields
-  const firstnameError = validateUsername(formData.first_name);
-  const lastnameError = validateUsername(formData.last_name);
+  const firstnameError =  validateName(formData.first_name);
+  const lastnameError =  validateName(formData.last_name);
   const usernameError = validateUsername(formData.username);
   const passwordError = validatePassword(formData.password);
-  const confirmPasswordError = validateUsername(formData.confirmPassword);
+  const confirmPasswordError = validateConfirmPassword(formData.confirmPassword);
 
   // Check for validation errors
   if (firstnameError !== '' || lastnameError !== ''|| passwordError !== '' || confirmPasswordError !== '' || usernameError !== ''){
@@ -116,30 +141,27 @@ function validateUsername(username){
         last_name:lastnameError,
         password: passwordError,
         confirmPassword: confirmPasswordError,
-      });
+    });
   } else {
     // No validation errors - success
-
     const user = {
         username: formData.username,
         password: formData.confirmPassword,
         first_name: formData.first_name,
         last_name: formData.last_name,
-      }; 
+    }; 
 
     users.push(user);
     navigate("/login");
-
-    // setRegisteredUser(user); // Save the registration information 
     
     console.log('Registration data:', formData);
-  }
-
+    }
   };
 
   return (
     <div className="registration-container">
-            <h1 className='logo-text'>facebook</h1>
+      <h1 className='logo-text'>facebook</h1>
+
     <div className="registration-box">
 
     <div className='registration-header'>
@@ -150,6 +172,7 @@ function validateUsername(username){
 <form onSubmit={handleSubmit}>
     <div className="form-group">
     <div className="name_inputs">
+    {errors.first_name && <span style={{position:'absolute'}} className="error-message">{errors.last_name}</span>}
           <label></label>
           <input 
             className="registration-input"
@@ -168,12 +191,13 @@ function validateUsername(username){
             value={formData.last_name}
             onChange={handleChange}
           />
-          {errors.first_name && <span className="error">{errors.last_name}</span>}
+          
         </div>
     </div>
        
 
         <div className="form-group">
+           {errors.username && ( <span className="error-message">{errors.username}</span>)}
           <label></label>
           <input
             type="text"
@@ -182,12 +206,11 @@ function validateUsername(username){
             value={formData.username}
             onChange={handleChange}
           />
-          {errors.username && (
-            <span className="error">{errors.username}</span>
-          )}
+
         </div>
 
         <div className="form-group">
+          {errors.password && <span className="error-message">{errors.password}</span>}
           <label></label>
           <input
             type="password"
@@ -196,11 +219,11 @@ function validateUsername(username){
             value={formData.password}
             onChange={handleChange}
           />
-          {errors.password && <span className="error">{errors.password}</span>}
         </div>
 
 
         <div className="form-group">
+          {errors.confirmPassword && <span className="error-message">{errors.confirmPassword}</span>}
           <label></label>
           <input
             type="password"
@@ -209,7 +232,6 @@ function validateUsername(username){
             value={formData.confirmPassword}
             onChange={handleChange}
           />
-          {errors.confirmPassword && <span className="error">{errors.confirmPassword}</span>}
         </div>
 
         <button className='registration-button' type="register">sign up</button>

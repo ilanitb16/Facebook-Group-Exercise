@@ -1,10 +1,17 @@
 import React, { useState } from "react";
 
-function NewPost({user_name,user_photo,postList,setPostList,newPostInput,setNewPostInput}) {
+function NewPost({
+  user_name,
+  user_photo,
+  postList,
+  setPostList,
+  newPostInput,
+  setNewPostInput,
+}) {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [imgNewPost, setImgNewPost] = useState(null);
-  
+
   const handleTitleChange = (event) => {
     setTitle(event.target.value);
   };
@@ -38,15 +45,15 @@ function NewPost({user_name,user_photo,postList,setPostList,newPostInput,setNewP
   };
 
   const deleteData = () => {
-    setTitle('');
-    setDescription('');
+    setTitle("");
+    setDescription("");
     setImgNewPost(null);
   };
 
   const handleScrollToBottom = () => {
     window.scrollTo({
       top: document.body.scrollHeight,
-      behavior: 'smooth',
+      behavior: "smooth",
     });
   };
 
@@ -77,9 +84,36 @@ function NewPost({user_name,user_photo,postList,setPostList,newPostInput,setNewP
                 <label>Image:</label>
                 <br />
                 <input type="file" onChange={handleImageChange} />
-                <button onClick={() => { addPost(); setNewPostInput(false); handleScrollToBottom()}}>post</button>
-                <button onClick={() => setNewPostInput(false)}>discard</button>
-                <button onClick={() => {setNewPostInput(false); deleteData();}}>cancel</button>
+                <div class="btn-group" role="group" aria-label="Basic example">
+                  <button
+                    type="button"
+                    class="btn btn-primary"
+                    onClick={() => {
+                      addPost();
+                      setNewPostInput(false);
+                      handleScrollToBottom();
+                    }}
+                  >
+                    post
+                  </button>
+                  <button
+                    type="button"
+                    class="btn btn-primary"
+                    onClick={() => setNewPostInput(false)}
+                  >
+                    discard
+                  </button>
+                  <button
+                    type="button"
+                    class="btn btn-primary"
+                    onClick={() => {
+                      setNewPostInput(false);
+                      deleteData();
+                    }}
+                  >
+                    cancel
+                  </button>
+                </div>
               </p>
             </div>
           )}

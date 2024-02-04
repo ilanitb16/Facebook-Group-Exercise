@@ -1,28 +1,16 @@
 import "./Menu.css";
-import img1 from "../postItem/img/img1.jpg";
-import profile1 from "../postItem/profile/profile1.jpg";
-import DarkMode from "../DarkMode/DarkMode.js";
+import { useState } from "react";
 import React from 'react';
 
 function Menu({ setPostList, postList, toggleTheme, newPostInput, setNewPostInput}) {
+
+  const [mode, setMode] = useState(false);
 
   const handleScrollToTop = () => {
     window.scrollTo({
       top: 0,
       behavior: 'smooth',
     });
-  };
-
-  const addPost = () => {
-    const newPost = {
-      title: "another car",
-      author: "noam leibovich",
-      description: "car",
-      date: "31/1/2024",
-      author_photo: profile1,
-      img: img1,
-    };
-    setPostList([...postList, newPost]);
   };
 
   return (
@@ -81,7 +69,17 @@ function Menu({ setPostList, postList, toggleTheme, newPostInput, setNewPostInpu
           <span className="badge bg-primary rounded-pill"></span>
         </li>
         <li className="list-group-item d-flex align-items-center">
-          <DarkMode toggleTheme={toggleTheme} />
+          <div className="menuObject">
+          <span className="myAccount w-100 m-1 ms-3" onClick={() => { toggleTheme(); setMode(!mode); }}>
+            <i
+          className={`bi bi-toggle-${mode ? "on" : "off"}`}
+        ></i>
+              <label>
+                <div className="textMenu">change mode</div>
+              </label>
+            </span>
+          </div>
+          <span className="badge bg-primary rounded-pill"></span>
         </li>
       </ul>
     </div>

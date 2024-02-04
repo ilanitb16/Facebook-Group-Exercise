@@ -11,12 +11,37 @@
     cursor: pointer;
 }
 
-.likeButton {
-    margin: 5px;
-}
-.commentButton {
-    margin: 5px;
-}
-.shareButton {
-    margin: 5px;
+.social {
+    display: flex;
+    align-items: center;
+  }
+  
+  .likeButton,
+  .commentButton,
+  .shareButton {
+    margin-right: 10px; /* Adjust the value to set the space between buttons */
+  }
+  
+.share-container {
+    display: flex;
+    align-items: center; /* Vertically center the icons */
+  }
+  
+  .social-icons {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .social-icons li {
+    margin-right: 10px; /* Adjust the value to set the space between social icons */
+  }
+  .social-icons li:hover {
+    transform: scale(1.5);
+    margin-right: 15px;
+  }
+  
+.whatsapp {
+    padding-left: 5px;
 }

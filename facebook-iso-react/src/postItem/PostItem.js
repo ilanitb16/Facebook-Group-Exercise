@@ -4,7 +4,7 @@ import Social from "./social/Social";
 import EditPost from "./EditPost";
 
 
-function PostItem({ postList, setPostList, title, author, description, date, author_photo, img}) {
+function PostItem({ postList, setPostList, title, author, description, date, author_photo, img, user_name, user_photo}) {
   const [editMode, setEditMode] = useState(false);
   const [newTitle, setNewTitle] = useState(title);
   const [newDescription, setNewDescription] = useState(description);
@@ -32,7 +32,7 @@ function PostItem({ postList, setPostList, title, author, description, date, aut
           <div className="row top-card">
             <div className="col-9">
               <p className="card-author">
-                <img src={author_photo} className="img-profile" alt="..." />
+                <img className="img-profile" src={author_photo} alt="..." />
                 <b>{"@" + author}</b>
                 {" " + date}
               </p>
@@ -59,7 +59,7 @@ function PostItem({ postList, setPostList, title, author, description, date, aut
                   <div className="description">
                   <label>Description:</label>
                   <textarea
-                  rows="1"
+                    rows="1"
                     value={newDescription}
                     style={{ width: "60%" }}
                     onChange={(e) => setNewDescription(e.target.value)}
@@ -68,7 +68,7 @@ function PostItem({ postList, setPostList, title, author, description, date, aut
                 </div>
               )}
           </div>
-          <Social />
+          <Social user_name={user_name} user_photo={user_photo}/>
           {editMode && (
                   <div className="editButtons">
                     <button key="update" onClick={updatePost} className="fs-6">Update</button>

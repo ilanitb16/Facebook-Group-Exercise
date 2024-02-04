@@ -16,3 +16,17 @@
     margin-left: 20px;
 }
 
+.img-profile {
+    object-fit: cover;
+  aspect-ratio: 1/1;
+}
+
+.img-profile-comments {
+    width: 25px;
+    object-fit: cover;
+    aspect-ratio: 1/1;
+    border-radius: 50%;
+    border: 1px solid #000;
+    margin: 10px;
+    margin-left: 20px;
+}

@@ -8,25 +8,29 @@ import posts from "./postItem/allPosts.json"
 import Info from "./Info.js"
 import user_photo from "./postItem/profile/user-photo.jpg"
 import NewPost from "./newPost/NewPost.js";
-import { useRef } from "react";
 
-function FeedPage({ postList, setPostList, toggleTheme }) {
+function FeedPage({ postList, setPostList, toggleTheme}) {
 
   const doSearch = function (q) {
     setPostList(posts.filter((post) => post.title.includes(q)));
   };
 
   const [newPostInput, setNewPostInput] = useState(false);
-  
+
+  const user_name = "ori2236";
+
   return (
     <React.Fragment>
       <Menu setPostList={setPostList} postList={postList} toggleTheme={toggleTheme} newPostInput={newPostInput} setNewPostInput={setNewPostInput} />
       <div className="col-9 main-content">
         <Search doSearch={doSearch} />
-        <NewPost postList={postList} setPostList={setPostList} user_name={"ori2236"} user_photo={user_photo} newPostInput={newPostInput} setNewPostInput={setNewPostInput}/>
-        <PostListReslts posts={postList} postList={postList} setPostList={setPostList} />
+        <NewPost postList={postList} setPostList={setPostList} user_name={user_name} user_photo={user_photo} newPostInput={newPostInput} setNewPostInput={setNewPostInput}/>
+        <PostListReslts posts={postList} postList={postList} setPostList={setPostList} user_name={user_name} user_photo={user_photo} />
+        <div><label></label></div>
+        <div><label></label></div>
+        <div><label></label></div>
       </div>
-        <Info user_name={"ori2236"} user_photo={user_photo}/>
+        <Info user_name={user_name} user_photo={user_photo}/>
     </React.Fragment>
   );
 }

@@ -2,9 +2,10 @@ import "./PostItem.css";
 import React, { useState, useRef } from "react";
 
 function EditPost({ title, postList, setPostList}) {
+    
     const [open, setOpen] = useState(false);
-  const menuRef = useRef();
-  const iconRef = useRef();
+    const menuRef = useRef();
+    const iconRef = useRef();
 
   window.addEventListener("click", (e) => {
     if (e.target !== menuRef.current && e.target !== iconRef.current) {

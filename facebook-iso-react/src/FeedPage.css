@@ -3,3 +3,38 @@
     top: 0;
     left: 0;
   }
+
+.info {
+  position: fixed;
+  top: 0;
+  right: 10px;
+}
+
+#dark .menuObject{
+  filter: invert(100%);
+}
+#dark .menuObject:hover{
+  filter: invert(0%);
+
+}
+.list-group-item {
+  border: 0px;
+  background-color: transparent;
+}
+.list-group-item:hover {
+  background-color: lightgray;
+}
+.textMenu {
+  cursor: pointer;
+  margin-left: 25px;
+  margin-right: 15px;
+}
+
+.img-profile-user {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: 1px solid #000;
+  margin: 10px;
+  margin-left: 20px;
+}

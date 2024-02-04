@@ -2,15 +2,14 @@ import "./Menu.css";
 import img1 from "../postItem/img/img1.jpg";
 import profile1 from "../postItem/profile/profile1.jpg";
 import DarkMode from "../DarkMode/DarkMode.js";
-import { BrowserRouter, Routes, Route, Link, Navigate } from "react-router-dom";
-import NewPost from "../newPost/NewPost.js";
 import React from 'react';
 
-function Menu({ setPostList, postList, toggleTheme }) {
+function Menu({ setPostList, postList, toggleTheme, newPostInput, setNewPostInput}) {
+
   const handleScrollToTop = () => {
     window.scrollTo({
       top: 0,
-      behavior: 'smooth', // Optional: Adds a smooth scrolling animation
+      behavior: 'smooth',
     });
   };
 
@@ -50,7 +49,7 @@ function Menu({ setPostList, postList, toggleTheme }) {
         </li>
         <li className="list-group-item d-flex align-items-center">
           <div className="menuObject">
-            <span className="newPost w-100 m-1 ms-3" onClick={addPost}>
+          <span className="newPost w-100 m-1 ms-3" onClick={() => {setNewPostInput(true);handleScrollToTop()}}>
               <i className="bi bi-plus-circle-fill"></i>
               <label>
                 <div className="textMenu">New Post</div>
@@ -65,6 +64,17 @@ function Menu({ setPostList, postList, toggleTheme }) {
               <i class="bi bi-person-circle"></i>
               <label>
                 <div className="textMenu">My account</div>
+              </label>
+            </span>
+          </div>
+          <span className="badge bg-primary rounded-pill"></span>
+        </li>
+        <li className="list-group-item d-flex align-items-center">
+          <div className="menuObject">
+            <span className="myAccount w-100 m-1 ms-3">
+            <i class="bi bi-box-arrow-right"></i>
+              <label>
+                <div className="textMenu">Log out</div>
               </label>
             </span>
           </div>

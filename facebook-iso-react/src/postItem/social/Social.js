@@ -21,7 +21,7 @@ function Social({user_name, user_photo}) {
 
   return (
     <div>
-      <div className="social">
+      <div className="icon social">
         <span className="likeButton">
           <i
             className={`bi bi-hand-thumbs-up${likePressed ? "-fill" : ""}`}

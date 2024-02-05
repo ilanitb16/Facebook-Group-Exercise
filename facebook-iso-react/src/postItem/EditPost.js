@@ -20,7 +20,7 @@ function EditPost({ title, postList, setPostList, editMode, setEditMode, deleteC
   };
 
   return (
-    <div className="col-3 d-flex justify-content-end align-items-center">
+    <div className="threeDots col-3 d-flex justify-content-end align-items-center">
       <div className="w-90 text-end">
         <i
           className="threeDots-item bi bi-three-dots-vertical"

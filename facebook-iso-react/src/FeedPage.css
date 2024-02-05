@@ -17,13 +17,7 @@
   filter: invert(0%);
 
 }
-.list-group-item {
-  border: 0px;
-  background-color: transparent;
-}
-.list-group-item:hover {
-  background-color: lightgray;
-}
+
 .textMenu {
   cursor: pointer;
   margin-left: 25px;
@@ -40,3 +34,31 @@
   margin-left: 20px;
 }
 
+#dark .user-name {
+  filter: invert(100%);
+}
+
+#dark .icon{
+  filter: invert(100%);
+}
+
+#dark .authorInfo,
+#dark .card-title,
+#dark .card-description,
+#dark .threeDots,
+#dark .editPost,
+#dark .editButtons,
+#dark .comment-input,
+#dark .userInfoComment {
+  filter: invert(100%);
+}
+
+#dark .newPostContent,
+#dark .searchLine{
+  filter: invert(95%);
+}
+#dark .card-img,
+#dark .img-profile-user,
+#dark .img-profile {
+  filter: invert(5%);
+}

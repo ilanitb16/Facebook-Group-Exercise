@@ -40,7 +40,7 @@ function Comment({ commentPressed, user_name, user_photo }) {
   return (
     <span className="comment-container">
       {commentPressed && (
-        <div className="comment-section">
+        <div className="comments-section">
           <div className="comment-input">
             <input
               type="text"
@@ -59,13 +59,13 @@ function Comment({ commentPressed, user_name, user_photo }) {
           <div className="comments" style={{ height: "120px", overflowY: "auto" }}>
             {comments.map((comment, index) => (
               <div key={index} className="comment-item">
-                <img className="img-profile-comments" src={user_photo} alt="..." />
-                <b>{"@" + user_name + ": "}</b>
-                {comment}
+                <img className="img-profile-comments" src={user_photo} alt="..." /><label className="userInfoComment">
+                <b >{"@" + user_name + ": "}</b>
+                {comment}</label>
                 {showIcons && (
                   <span className="comment-actions">
-                    <i className="editComment bi bi-sliders" onClick={() => handleEditComment(index)}></i>
-                    <i className="bi bi-trash3" onClick={() => handleDeleteComment(index)}></i>
+                    <i className="icon editComment bi bi-sliders" onClick={() => handleEditComment(index)}></i>
+                    <i className="icon bi bi-trash3" onClick={() => handleDeleteComment(index)}></i>
                   </span>
                 )}
               </div>

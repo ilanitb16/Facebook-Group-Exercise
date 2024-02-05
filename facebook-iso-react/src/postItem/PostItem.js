@@ -32,10 +32,10 @@ function PostItem({ postList, setPostList, title, author, description, date, aut
           <div className="row top-card">
             <div className="col-9">
               <p className="card-author">
-                <img className="img-profile" src={author_photo} alt="..."></img>
+                <img className="img-profile" src={author_photo} alt="..."></img><span  className="authorInfo">
                 <b>{"@" + author}</b>
-                {" " + date}
-              </p>
+                {" " + date}</span></p>
+              
             </div>
             <EditPost title={title} postList={postList} setPostList={setPostList} editMode={editMode} setEditMode={setEditMode} deleteChanges={deleteChanges} />
           </div>
@@ -44,11 +44,11 @@ function PostItem({ postList, setPostList, title, author, description, date, aut
           {!editMode && (
           <div>
            <h5 className="card-title">{title}</h5>
-          <p className="card-text">{description}</p>
+          <p className="card-description">{description}</p>
           </div>
           )}
           {editMode && (
-                <div>
+                <div className="editPost">
                   <label>Title:</label>
                   <input
                     type="text"

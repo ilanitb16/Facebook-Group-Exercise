@@ -2,7 +2,7 @@ import "./Menu.css";
 import { useState } from "react";
 import React from 'react';
 
-function Menu({ setPostList, postList, toggleTheme, newPostInput, setNewPostInput}) {
+function Menu({toggleTheme, setNewPostInput}) {
 
   const [mode, setMode] = useState(false);
 

@@ -3,8 +3,8 @@ import { useState } from "react";
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import { createContext } from "react";
 import FeedPage from "../FeedPage.js";
-import NewPost from "../newPost/NewPost.js";
 import posts from "../postItem/allPosts.json"
+
 export const ThemeContext = createContext(null);
 
 function App() {

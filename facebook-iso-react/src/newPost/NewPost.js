@@ -66,7 +66,7 @@ function NewPost({
         <div className="card" href="details.html">
           {newPostInput && (
             <div className="row top-card">
-              <p className="card-title">
+              <p className="newPostContent">
                 <label>NEW POST: What would you like to share?</label>
                 <br />
                 <br />
@@ -86,7 +86,8 @@ function NewPost({
                 <label>Image:</label>
                 <br />
                 <input type="file" onChange={handleImageChange} />
-                <div class="btn-group" role="group" aria-label="Basic example">
+                </p>
+                <div class="newPostButtons btn-group" role="group" aria-label="Basic example">
                   <button
                     type="button"
                     class="btn btn-primary"
@@ -116,7 +117,6 @@ function NewPost({
                     cancel
                   </button>
                 </div>
-              </p>
             </div>
           )}
         </div>

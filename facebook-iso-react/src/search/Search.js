@@ -14,7 +14,7 @@ function Search({ doSearch}) {
       </div>
     <div className="col-9 main-content">
       <div className="search col-5">
-        <div className="input-group mb-3 p-2">
+        <div className="searchLine input-group mb-3 p-2">
           <input
             ref={searchBox}
             onKeyUp={search}

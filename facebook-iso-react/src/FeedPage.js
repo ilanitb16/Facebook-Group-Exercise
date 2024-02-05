@@ -5,8 +5,8 @@ import Menu from "./menu/Menu.js";
 import Search from "./search/Search.js";
 import PostListReslts from "./postListResults/PostListResults.js";
 import posts from "./postItem/allPosts.json"
-import Info from "./Info.js"
-import user_photo from "./postItem/profile/user-photo.jpg"
+import Info from "./info/Info.js";
+
 import NewPost from "./newPost/NewPost.js";
 
 function FeedPage({ postList, setPostList, toggleTheme}) {
@@ -18,10 +18,10 @@ function FeedPage({ postList, setPostList, toggleTheme}) {
   const [newPostInput, setNewPostInput] = useState(false);
 
   const user_name = "ori2236";
-
+  const user_photo = process.env.PUBLIC_URL + '/profile/user-photo.jpg';
   return (
     <React.Fragment>
-      <Menu setPostList={setPostList} postList={postList} toggleTheme={toggleTheme} newPostInput={newPostInput} setNewPostInput={setNewPostInput} />
+      <Menu toggleTheme={toggleTheme} setNewPostInput={setNewPostInput} />
       <div className="col-9 main-content">
         <Search doSearch={doSearch} />
         <NewPost postList={postList} setPostList={setPostList} user_name={user_name} user_photo={user_photo} newPostInput={newPostInput} setNewPostInput={setNewPostInput}/>

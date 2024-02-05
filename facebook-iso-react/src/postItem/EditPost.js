@@ -1,7 +1,7 @@
 import "./PostItem.css";
 import React, { useState, useRef } from "react";
 
-function EditPost({ title, postList, setPostList, editMode, setEditMode }) {
+function EditPost({ title, postList, setPostList, editMode, setEditMode, deleteChanges }) {
   const [open, setOpen] = useState(false);
 
   const menuRef = useRef();
@@ -16,26 +16,31 @@ function EditPost({ title, postList, setPostList, editMode, setEditMode }) {
   const removePost = () => {
     const updatedPosts = postList.filter((post) => post.title !== title);
     setPostList(updatedPosts);
+
   };
 
   return (
     <div className="col-3 d-flex justify-content-end align-items-center">
       <div className="w-90 text-end">
         <i
-          className="bi bi-three-dots-vertical"
+          className="threeDots-item bi bi-three-dots-vertical"
           style={{ fontSize: "1.6rem" }}
           ref={iconRef}
-          onClick={() => {setOpen(!open)}}
+          onClick={() => { 
+            if (!editMode) {
+              setOpen(!open);
+            }
+          }}
         >
           {open && (
-            <div ref={menuRef} className="absolute-left">
+            <div ref={menuRef} className="threeDots-item absolute-left">
               <ul style={{ listStyleType: "none", padding: 0 }}>
                 {!editMode && (
-                  <li key="edit" onClick={() => setEditMode(true)} className="fs-6">
+                  <li key="edit" onClick={() => {setEditMode(true); deleteChanges();}} className="fs-6">
                     <i className="bi bi-sliders"></i> Edit
                   </li>
                 )}
-                <li key="delete" onClick={() => removePost()} className="fs-6">
+                <li key="delete" onClick={() => {removePost();}} className="fs-6">
                   <i className="bi bi-trash3"></i> Delete
                 </li>
               </ul>

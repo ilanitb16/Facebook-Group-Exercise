@@ -30,3 +30,7 @@
     margin: 10px;
     margin-left: 20px;
 }
+
+.threeDots-item:hover {
+    cursor: pointer;
+}

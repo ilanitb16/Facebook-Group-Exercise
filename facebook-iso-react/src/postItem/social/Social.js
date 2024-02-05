@@ -14,9 +14,6 @@ function Social({user_name, user_photo}) {
     setLlikePressed((pressed) => !pressed);
   };
 
-  const [commentContent, setCommentContent] = useState("");
-  const [comments, setComments] = useState([]);
-
   const handleClickComment = () => {
     setCommentPressed((pressed) => !pressed);
   };
@@ -47,7 +44,7 @@ function Social({user_name, user_photo}) {
         <Share />
       </div>
       <div className="commentSection">
-      <Comment commentPressed={commentPressed} commentContent={commentContent} setCommentContent={setCommentContent} comments={comments} setComments={setComments} user_name={user_name} user_photo={user_photo} />
+      <Comment commentPressed={commentPressed} user_name={user_name} user_photo={user_photo} />
       </div>
     </div>
   );

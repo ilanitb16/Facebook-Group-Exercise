@@ -1,13 +1,40 @@
-import React from "react";
+import React, { useState } from "react";
 
-function Comment({ commentPressed, commentContent, setCommentContent, comments, setComments, user_name, user_photo }) {
+function Comment({ commentPressed, user_name, user_photo }) {
+  const [commentContent, setCommentContent] = useState(""); //current comment being typed
+  const [comments, setComments] = useState([]); //the array where all the posted comments in
+  const [editIndex, setEditIndex] = useState(null); //track of the index of the comment
+  const [showIcons, setShowIcons] = useState(false); //show the editing icon
+
   const handleCommentChange = (event) => {
     setCommentContent(event.target.value);
   };
 
-  const handleAddComment = () => {
-    setComments((prevComments) => [...prevComments, commentContent]);
-    setCommentContent(""); // Clear the commentContent after adding the comment
+  const noEmptyComment = () => {
+    if (commentContent.trim() === "") {
+      return;
+    }
+
+    if (editIndex !== null) {
+      const updatedComments = [...comments];
+      updatedComments[editIndex] = commentContent;
+      setComments(updatedComments);
+      setEditIndex(null);
+    } else {
+      setComments((prevComments) => [...prevComments, commentContent]);
+      setCommentContent("");
+    }
+  };
+
+  const handleEditComment = (index) => {
+    setEditIndex(index);
+    setCommentContent(comments[index]);
+    setShowIcons(!showIcons);
+  };
+
+  const handleDeleteComment = (index) => {
+    const updatedComments = comments.filter((_, i) => i !== index);
+    setComments(updatedComments);
   };
 
   return (
@@ -20,16 +47,28 @@ function Comment({ commentPressed, commentContent, setCommentContent, comments, 
               value={commentContent}
               onChange={handleCommentChange}
               placeholder="Write a comment..."
+              onKeyPress={(event) => event.key === "Enter" && noEmptyComment()}
             />
-            <button onClick={handleAddComment}>Add Comment</button>
+            <button className="post-comment" onClick={noEmptyComment}>
+              Post Comment
+            </button>
+            <button className="edit-comments" onClick={() => setShowIcons(!showIcons)}>
+              Edit Comments
+            </button>
           </div>
           <div className="comments" style={{ height: "120px", overflowY: "auto" }}>
             {comments.map((comment, index) => (
-              <p key={index} style={{ margin: "0" }}>
+              <div key={index} className="comment-item">
                 <img className="img-profile-comments" src={user_photo} alt="..." />
                 <b>{"@" + user_name + ": "}</b>
                 {comment}
-              </p>
+                {showIcons && (
+                  <span className="comment-actions">
+                    <i className="editComment bi bi-sliders" onClick={() => handleEditComment(index)}></i>
+                    <i className="bi bi-trash3" onClick={() => handleDeleteComment(index)}></i>
+                  </span>
+                )}
+              </div>
             ))}
           </div>
         </div>

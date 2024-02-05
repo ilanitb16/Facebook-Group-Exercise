@@ -21,8 +21,6 @@ function NewPost({
   };
 
   const handleImageChange = (event) => {
-    // Handle image upload logic here
-    // This example sets the selected image in the state
     setImgNewPost(event.target.files[0]);
   };
 
@@ -32,14 +30,18 @@ function NewPost({
   }/${currentDate.getFullYear()}`;
 
   const addPost = () => {
+    // Check if an image is selected
+    const img = imgNewPost ? URL.createObjectURL(imgNewPost) : null;
+
     const newPost = {
       title: title,
       author: user_name,
       description: description,
       date: formattedDate,
       author_photo: user_photo,
-      img: imgNewPost,
+      img: img,
     };
+
     setPostList([...postList, newPost]);
     deleteData();
   };

@@ -16,7 +16,7 @@ function PostItem({ postList, setPostList, title, author, description, date, aut
         : post
     );
     setPostList(updatedPosts);
-    setEditMode(false); // Close edit mode after updating
+    setEditMode(false);
   };
   
   const deleteChanges = () => {
@@ -32,14 +32,14 @@ function PostItem({ postList, setPostList, title, author, description, date, aut
           <div className="row top-card">
             <div className="col-9">
               <p className="card-author">
-                <img className="img-profile" src={author_photo} alt="..." />
+                <img className="img-profile" src={author_photo} alt="..."></img>
                 <b>{"@" + author}</b>
                 {" " + date}
               </p>
             </div>
-            <EditPost title={title} postList={postList} setPostList={setPostList} editMode={editMode} setEditMode={setEditMode} />
+            <EditPost title={title} postList={postList} setPostList={setPostList} editMode={editMode} setEditMode={setEditMode} deleteChanges={deleteChanges} />
           </div>
-          <img src={img} className="card-img" alt="..."></img>
+          <img className="card-img" src={img} alt="..."></img>
           <div className="card-body">
           {!editMode && (
           <div>
@@ -72,7 +72,7 @@ function PostItem({ postList, setPostList, title, author, description, date, aut
           {editMode && (
                   <div className="editButtons">
                     <button key="update" onClick={updatePost} className="fs-6">Update</button>
-                    <button key="cancel" onClick={() => {setEditMode(false);deleteChanges();}} className="fs-6">Cancel</button>
+                    <button key="cancel" onClick={() => {deleteChanges();setEditMode(false);}} className="fs-6">Cancel</button>
                   </div>
                 )}
         </div>

@@ -33,7 +33,6 @@ function Menu({toggleTheme, setNewPostInput}) {
               </label>
             </span>
           </div>
-          <span className="badge bg-primary rounded-pill">1</span>
         </li>
         <li className="list-group-item d-flex align-items-center">
           <div className="menuObject">
@@ -43,7 +42,6 @@ function Menu({toggleTheme, setNewPostInput}) {
                 <div className="textMenu">New Post</div>
               </label>
             </span>
-            <span className="badge bg-primary rounded-pill"></span>
           </div>
         </li>
         <li className="list-group-item d-flex align-items-center">
@@ -55,7 +53,6 @@ function Menu({toggleTheme, setNewPostInput}) {
               </label>
             </span>
           </div>
-          <span className="badge bg-primary rounded-pill"></span>
         </li>
         <li className="list-group-item d-flex align-items-center">
           <div className="menuObject">
@@ -66,7 +63,6 @@ function Menu({toggleTheme, setNewPostInput}) {
               </label>
             </span>
           </div>
-          <span className="badge bg-primary rounded-pill"></span>
         </li>
         <li className="list-group-item d-flex align-items-center">
           <div className="menuObject">
@@ -79,7 +75,6 @@ function Menu({toggleTheme, setNewPostInput}) {
               </label>
             </span>
           </div>
-          <span className="badge bg-primary rounded-pill"></span>
         </li>
       </ul>
     </div>

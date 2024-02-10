@@ -34,3 +34,12 @@
 .threeDots-item:hover {
     cursor: pointer;
 }
+
+.card-img {
+    max-width: 500px; 
+    max-height: 300px;
+    width: auto; /* Set width to auto to maintain aspect ratio */
+    height: auto; /* Set height to auto to maintain aspect ratio */
+    display: block; /* Ensure the image is treated as a block element */
+    margin: 0 auto; /* Center the image horizontally */
+}

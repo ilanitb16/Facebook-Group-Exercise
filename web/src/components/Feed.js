@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 import {useUser} from '../providers/user_context';
 
-const FeedPage = () => {
+const Feed = () => {
     const [user, setUser] = useUser();
     const navigate = useNavigate();
 
@@ -15,9 +15,10 @@ const FeedPage = () => {
         }
     });
 
+
     return (
         <h1>Feed</h1>
     );
 };
 
-export default FeedPage;
+export default Feed;

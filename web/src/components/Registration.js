@@ -24,8 +24,11 @@ function Registration() {
 
     const handleChange = (e) => {
         const { name, value } = e.target;
-        const selectedFile = e.target.files[0]; // Access files from e.target
 
+        const selectedFile = e.target.files && e.target.files.length > 0 ? e.target.files[0] : null; // Check if files exist and if there's at least one file selected
+
+        //const selectedFile = e.target.files[0]; // Access files from e.target
+    
         setFormData({
         ...formData,
       //  [name]: value,
@@ -70,70 +73,62 @@ function Registration() {
         }
 
     function validateConfirmPassword(password, confirmPassword){
-        if(password === confirmPassword){
-            return '';
-        }
-        // if (confirmPassword.trim().length > 0) {
-        //     return 'Field is required';
-        // }
-        return 'Passwords are not matching';
+      if (!confirmPassword || confirmPassword.trim().length === 0) {
+        return 'Please confirm your password.';
+      }
+      if (!password || password.trim().length === 0) {
+        return '';
+      }
+      if (password === confirmPassword) {
+        return '';
+      }
+      return 'Passwords do not match.';
     }  
     
     // Username can be either a phone number or your email address
     function validateUsername(username){
-        if (username && typeof username === 'string' && username.trim().length > 0) {
-            return 'Username is required.';
-        }
-        if(username.length <3){
-            return 'Username too short.';
-        }
-        if(username.length > 20){
-            return 'Username too long.';
-        }
+      if (!username || typeof username !== 'string' || username.trim().length === 0) {
+        return 'Username is required.';
+      }
+      if (username.length < 3) {
+        return 'Username is too short.';
+      }
+      if (username.length > 20) {
+        return 'Username is too long.';
+      }
     
-        return null; // No problems
+      return ''; // No errors
     }
 
     function validateName(name){
     
-        if (name && typeof name === 'string' && name.trim().length > 0) {
-            return 'Name and last name are required.';
-        }
-
-        // Regular expression pattern for letters only
-        const pattern = /^[A-Za-z]+$/;
-
-        // Test if the name contains only letters
-        const containsOnlyLetters = pattern.test(name);
-
-        if(containsOnlyLetters){
-            return '';
-        }
-        else{
-            return 'Invalid input. Names must contain letters only.';
-        }
+      if (!name || typeof name !== 'string' || name.trim().length === 0) {
+        return 'Name and last name are required.';
+      }
+    
+      // Regular expression pattern for letters only
+      const pattern = /^[A-Za-z]+$/;
+    
+      // Test if the name contains only letters
+      const containsOnlyLetters = pattern.test(name);
+    
+      if (!containsOnlyLetters) {
+        return 'Invalid input. Names must contain letters only.';
+      }
+    
+      return ''; // No errors
+    
     }
 
 const handleSubmit = (e) => {
     e.preventDefault(); //  prevent page from getting reloaded (otherwise we will loose our state)
-    // const user = {
-    //     username: formData.username,
-    //     password: formData.confirmPassword,
-    //     first_name: formData.first_name,
-    //     last_name: formData.last_name,
-    //   }; 
-
-    // users.push(user);
-    // navigate("/login");
-    // return;
-
      
   // Validate form fields
   const firstnameError =  validateName(formData.first_name);
   const lastnameError =  validateName(formData.last_name);
   const usernameError = validateUsername(formData.username);
   const passwordError = validatePassword(formData.password);
-  const confirmPasswordError = validateConfirmPassword(formData.confirmPassword);
+  const confirmPasswordError = validateConfirmPassword(formData.password, formData.confirmPassword);
 
   // Check for validation errors
   if (firstnameError !== '' || lastnameError !== ''|| passwordError !== '' || confirmPasswordError !== '' || usernameError !== ''){
@@ -159,6 +154,8 @@ const handleSubmit = (e) => {
     navigate("/login");
     
     console.log('Registration data:', formData);
+    setErrors({});
+
     }
   };
 

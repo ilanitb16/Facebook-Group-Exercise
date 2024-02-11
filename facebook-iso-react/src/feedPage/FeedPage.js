@@ -1,13 +1,13 @@
 import "./FeedPage.css";
 import React from "react";
 import { useState } from "react";
-import Menu from "./menu/Menu.js";
-import Search from "./search/Search.js";
-import PostListReslts from "./postListResults/PostListResults.js";
-import posts from "./postItem/allPosts.json"
-import Info from "./info/Info.js";
+import Menu from "../menu/Menu.js";
+import Search from "../search/Search.js";
+import PostListReslts from "../postListResults/PostListResults.js";
+import posts from "../postItem/allPosts.json"
+import Info from "../info/Info.js";
 
-import NewPost from "./newPost/NewPost.js";
+import NewPost from "../newPost/NewPost.js";
 
 function FeedPage({ postList, setPostList, toggleTheme}) {
 

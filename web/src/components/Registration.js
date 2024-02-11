@@ -17,16 +17,19 @@ function Registration() {
         username: '',
         password: '',
         confirmPassword: '',
+        photo: null, 
     });
 
     const [errors, setErrors] = useState({});
 
     const handleChange = (e) => {
         const { name, value } = e.target;
-        console.log(e.target)
+        const selectedFile = e.target.files[0]; // Access files from e.target
+
         setFormData({
         ...formData,
-        [name]: value,
+      //  [name]: value,
+        [name]: name === 'photo' ? selectedFile : value,
         });
     };
 
@@ -149,6 +152,7 @@ const handleSubmit = (e) => {
         password: formData.confirmPassword,
         first_name: formData.first_name,
         last_name: formData.last_name,
+        photo : formData.photo,
     }; 
 
     users.push(user);
@@ -163,14 +167,22 @@ const handleSubmit = (e) => {
       <h1 className='logo-text'>facebook</h1>
 
     <div className="registration-box">
-
     <div className='registration-header'>
         <h2>Create a new account</h2>
-        <h5 style={{color:'grey'}}>It’s quick and easy.</h5>
+        <h5 style={{color:'grey',marginTop:'-20px'}}>It’s quick and easy.</h5>
     </div >
 
 <form onSubmit={handleSubmit}>
     <div className="form-group">
+    <div style={{marginTop:'15px'}} className="form-group">
+        <label></label>
+        <input
+          type="file"
+          name="photo"
+          accept="image/*" 
+          onChange={handleChange}
+        />
+      </div>
     <div className="name_inputs">
     {errors.first_name && <span style={{position:'absolute'}} className="error-message">{errors.last_name}</span>}
           <label></label>
@@ -195,7 +207,6 @@ const handleSubmit = (e) => {
         </div>
     </div>
        
-
         <div className="form-group">
            {errors.username && ( <span className="error-message">{errors.username}</span>)}
           <label></label>

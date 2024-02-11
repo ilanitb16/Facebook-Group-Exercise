@@ -23,7 +23,7 @@ function PostItem({
   const updatePost = () => {
     const updatedPosts = postList.map((post) =>
       post.title === title
-        ? { ...post, title: newTitle, description: newDescription, img: newImg }
+        ? { ...post, title: newTitle, description: newDescription, img: newImg, Key:post.id }
         : post
     );
     setPostList(updatedPosts);

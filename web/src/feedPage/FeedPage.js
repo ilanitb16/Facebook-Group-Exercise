@@ -21,12 +21,17 @@ function FeedPage({ postList, setPostList, toggleTheme}) {
     setPostList(posts.filter((post) => post.title.includes(q)));
   };
 
-  const user_name = "ori2236";
-  const user_photo = process.env.PUBLIC_URL + '/profile/user-photo.jpg';
+  let user_name = user?.username;
+  let user_photo = user?.photo;// process.env.PUBLIC_URL + '/profile/user-photo.jpg';
 
   useEffect(() => {
+    console.log("user: ", user)
       if(!user?.authenticated){
-        // navigate("/login");
+        navigate("/login");
+      }
+      else{
+        user_name = user?.username;
+        user_photo = user?.photo;
       }
   });
 
@@ -41,7 +46,7 @@ function FeedPage({ postList, setPostList, toggleTheme}) {
         <div><label></label></div>
         <div><label></label></div>
       </div>
-        <Info user_name={user_name} user_photo={user_photo}/>
+        <Info user_name={user?.username} user_photo={user?.photo}/>
     </React.Fragment>
   );
 }

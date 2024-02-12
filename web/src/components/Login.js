@@ -22,7 +22,7 @@ const Login = ({ darkMode, toggleDarkMode }) => {
     if (user) {
         // Authentication successful
         setLoggedIn(true);
-        setUser({authenticated: true});
+        setUser({authenticated: true, username: user.username, photo: user.photo});
         navigate("/");
         
       } else {

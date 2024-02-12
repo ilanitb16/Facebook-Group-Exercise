@@ -21,7 +21,6 @@ function Search({ doSearch}) {
             type="text"
             className="form-control"
             placeholder="Search Facebook"
-            aria
             label="Search"
             aria-describedby="button-addon2"
           ></input>

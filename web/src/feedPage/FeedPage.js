@@ -15,23 +15,18 @@ import NewPost from "../newPost/NewPost.js";
 function FeedPage({ postList, setPostList, toggleTheme}) {
   const [user, setUser] = useUser();
   const [newPostInput, setNewPostInput] = useState(false);
-  
+  const navigate = useNavigate();
+
   const doSearch = function (q) {
     setPostList(posts.filter((post) => post.title.includes(q)));
   };
 
-  
-
   const user_name = "ori2236";
   const user_photo = process.env.PUBLIC_URL + '/profile/user-photo.jpg';
 
-  const navigate = useNavigate();
-
   useEffect(() => {
-      console.log("User", user);
-
       if(!user?.authenticated){
-         navigate("/login")
+        // navigate("/login");
       }
   });
 

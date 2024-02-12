@@ -87,10 +87,10 @@ function NewPost({
                 <br />
                 <input type="file" onChange={handleImageChange} />
                 </p>
-                <div class="newPostButtons btn-group" role="group" aria-label="Basic example">
+                <div className="newPostButtons btn-group" role="group" aria-label="Basic example">
                   <button
                     type="button"
-                    class="btn btn-primary"
+                    className="btn btn-primary"
                     onClick={() => {
                       addPost();
                       setNewPostInput(false);
@@ -101,14 +101,14 @@ function NewPost({
                   </button>
                   <button
                     type="button"
-                    class="btn btn-primary"
+                    className="btn btn-primary"
                     onClick={() => setNewPostInput(false)}
                   >
                     discard
                   </button>
                   <button
                     type="button"
-                    class="btn btn-primary"
+                    className="btn btn-primary"
                     onClick={() => {
                       setNewPostInput(false);
                       deleteData();

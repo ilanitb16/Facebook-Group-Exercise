@@ -47,7 +47,7 @@ function Menu({toggleTheme, setNewPostInput}) {
         <li className="list-group-item d-flex align-items-center">
           <div className="menuObject">
             <span className="myAccount w-100 m-1 ms-3">
-              <i class="bi bi-person-circle"></i>
+              <i className="bi bi-person-circle"></i>
               <label>
                 <div className="textMenu">My account</div>
               </label>
@@ -57,7 +57,7 @@ function Menu({toggleTheme, setNewPostInput}) {
         <li className="list-group-item d-flex align-items-center">
           <div className="menuObject">
             <span className="myAccount w-100 m-1 ms-3">
-            <i class="bi bi-box-arrow-right"></i>
+            <i className="bi bi-box-arrow-right"></i>
               <label>
                 <div className="textMenu">Log out</div>
               </label>

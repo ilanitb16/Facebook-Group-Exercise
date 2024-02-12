@@ -148,7 +148,7 @@ function Registration() {
     }; 
 
     users.push(user);
-    navigate("/login");
+    navigate("/");
     
     console.log('Registration data:', formData);
     setErrors({});

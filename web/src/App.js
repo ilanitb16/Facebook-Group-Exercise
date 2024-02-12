@@ -1,15 +1,26 @@
-import React, {useEffect} from 'react';
+import React, { useState, createContext } from 'react';
 import {createBrowserRouter, RouterProvider} from "react-router-dom"
 import Login from './components/Login';
-import Feed from './components/Feed';
 import Registration from './components/Registration';
 import { UserProvider } from './providers/user_context';
+import FeedPage from './feedPage/FeedPage';
+import posts from "./postItem/allPosts.json"
+import "./styles/app.css";
+
+export const ThemeContext = createContext(null);
 
 const App = () => {
+  const [postList, setPostList] = useState(posts);
+  const[theme, setTheme] = useState("light");
+  
+  const toggleTheme = () => {
+    setTheme((curr) => (curr === "light" ? "dark" : "light"));
+  };
+
   const router = createBrowserRouter([
     {
       path: "/",
-      element: <Feed />,
+      element: <FeedPage postList={postList} setPostList={setPostList} toggleTheme={toggleTheme} />,
     },
     {
       path: "/registration",
@@ -22,11 +33,17 @@ const App = () => {
   ])
 
   return (
-    <div className="App">
-      <UserProvider>
-        <RouterProvider router={router} />
-      </UserProvider>
+    
+
+  <ThemeContext.Provider value={{theme, setTheme}}>
+    <div className="container-fluid" id={theme}>
+      <div className="row">
+        <UserProvider>
+          <RouterProvider router={router} />
+        </UserProvider>
+      </div>
     </div>
+    </ThemeContext.Provider>
   );
 };
 

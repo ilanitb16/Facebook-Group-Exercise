@@ -8,12 +8,12 @@ import posts from "../postItem/allPosts.json"
 export const ThemeContext = createContext(null);
 
 function Connector() {
+  const [postList, setPostList] = useState(posts);
   const[theme, setTheme] = useState("light");
   const toggleTheme = () => {
     setTheme((curr) => (curr === "light" ? "dark" : "light"));
   };
-  const [postList, setPostList] = useState(posts);
-
+  
   return (
     <ThemeContext.Provider value={{theme, setTheme}}>
     <div className="container-fluid" id={theme}>

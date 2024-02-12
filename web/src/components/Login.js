@@ -8,7 +8,7 @@ import '../styles/Login.css'; // Import the CSS file
 
 const Login = ({ darkMode, toggleDarkMode }) => {
   const [user, setUser] = useUser();
-    const navigate = useNavigate()
+  const navigate = useNavigate()
 
   // useState is used to declare & manage state variables in a component
   const [username, setUsername] = useState(''); // init state variable with value = empty string ''

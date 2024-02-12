@@ -1,10 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from "react-router-dom";
+import { users } from '../Auth.js';
 import '../styles/Registration.css'; // Import the CSS file for registration styles
-import {users} from '../Auth.js';
-
-// Import the necessary components from react-router-dom
-
 
 function Registration() {
     const navigate = useNavigate();
@@ -120,7 +117,7 @@ function Registration() {
     
     }
 
-const handleSubmit = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault(); //  prevent page from getting reloaded (otherwise we will loose our state)
      
   // Validate form fields
@@ -208,7 +205,7 @@ const handleSubmit = (e) => {
             <input
               type="text"
               name="username"
-              placeholder='username'
+              placeholder='User Name'
               value={formData.username}
               onChange={handleChange}
             />
@@ -220,7 +217,7 @@ const handleSubmit = (e) => {
             <input
               type="password"
               name="password"
-              placeholder='password'
+              placeholder='Password'
               value={formData.password}
               onChange={handleChange}
             />
@@ -232,7 +229,7 @@ const handleSubmit = (e) => {
             <input
               type="password"
               name="confirmPassword"
-              placeholder='confirm password'
+              placeholder='Confirm Password'
               value={formData.confirmPassword}
               onChange={handleChange}
             />

@@ -6,7 +6,7 @@ import { useUser } from '../providers/user_context';
 import '../styles/Login.css'; // Import the CSS file
 
 
-const Login = () => {
+const Login = ({ darkMode, toggleDarkMode }) => {
   const [user, setUser] = useUser();
     const navigate = useNavigate()
 
@@ -32,7 +32,7 @@ const Login = () => {
   };
 
   return (
-    <div className="login-container">
+    <div className={`login-container ${darkMode ? 'dark-mode' : ''}`}>
       <h1 className='logo-text1'>facebook</h1>
       <div className="login-box">
       
@@ -68,6 +68,9 @@ const Login = () => {
           <a href="#">Forgot Password?</a> · <Link to="/registration">Sign up for Facebook</Link>
         </p>
       </div>
+      <button onClick={toggleDarkMode}>
+        {darkMode ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
+      </button>
     </div>
   );
 };

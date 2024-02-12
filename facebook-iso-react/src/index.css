@@ -1,0 +1,15 @@
+
+#dark .menuObject{
+  filter: invert(100%);
+}
+#dark .menuObject:hover{
+  filter: invert(0%);
+
+}
+.list-group-item {
+  border: 0px;
+  background-color: transparent;
+}
+.list-group-item:hover {
+  background-color: lightgray;
+}

@@ -32,21 +32,21 @@ const Login = ({ darkMode, toggleDarkMode }) => {
   };
 
   return (
-    <div className={`login-container ${darkMode ? 'dark-mode' : ''}`}>
+   // <div className={`login-container ${darkMode ? 'dark-mode' : ''}`}>
+
+    <div className="login-container">
       <h1 className='logo-text1'>facebook</h1>
       <div className="login-box">
-      
-        {/* <div className="login-logo"></div> */}
         <h2 className="login-header">Log Into Facebook</h2>
         <form className="login-form">
           <div className="form-group">
-          {errorMessage && <div className="error-message">{errorMessage}</div>} {/* Display error message */}
+            {errorMessage && <div className="error-message">{errorMessage}</div>} {/* Display error message */}
             <label></label> 
             <input
               className='login-input'
               type="text"
               value={username}
-              placeholder='Email or phone number'
+              placeholder='Username'
               onChange={(e) => setUsername(e.target.value)}
             />
           </div>
@@ -68,9 +68,9 @@ const Login = ({ darkMode, toggleDarkMode }) => {
           <a href="#">Forgot Password?</a> · <Link to="/registration">Sign up for Facebook</Link>
         </p>
       </div>
-      <button onClick={toggleDarkMode}>
-        {darkMode ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
-      </button>
+      <div>
+
+      </div>
     </div>
   );
 };

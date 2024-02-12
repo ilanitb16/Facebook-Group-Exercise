@@ -163,93 +163,89 @@ const handleSubmit = (e) => {
     <div className="registration-container">
       <h1 className='logo-text'>facebook</h1>
 
-    <div className="registration-box">
-    <div className='registration-header'>
-        <h2>Create a new account</h2>
-        <h5 style={{color:'grey',marginTop:'-20px'}}>It’s quick and easy.</h5>
-    </div >
+      <div className="registration-box">
+        <div className='registration-header'>
+          <h2>Create a new account</h2>
+          <h3>It’s quick and easy.</h3>
+        </div >
 
-<form onSubmit={handleSubmit}>
-    <div className="form-group">
-    <div style={{marginTop:'15px'}} className="form-group">
-        <label></label>
-        <input
-          type="file"
-          name="photo"
-          accept="image/*" 
-          onChange={handleChange}
-        />
+        <form onSubmit={handleSubmit}>
+          <div className="form-group">
+            <div style={{marginTop:'15px'}} className="form-group">
+              <label></label>
+              <input
+                type="file"
+                name="photo"
+                accept="image/*" 
+                onChange={handleChange}
+              />
+            </div>
+            <div className="name_inputs">
+              {errors.first_name && <span style={{position:'absolute'}} className="error-message">{errors.last_name}</span>}
+              <input 
+                className="registration-input left"
+                type="text"
+                name="first_name"
+                placeholder='First name'
+                value={formData.first_name}
+                onChange={handleChange}
+              />
+            
+              <input
+                className="registration-input right"
+                type="text"
+                name="last_name"
+                placeholder='Last name'
+                value={formData.last_name}
+                onChange={handleChange}
+              />
+            </div>
+          </div>
+            
+          <div className="form-group">
+              {errors.username && ( <span className="error-message">{errors.username}</span>)}
+            <label></label>
+            <input
+              type="text"
+              name="username"
+              placeholder='username'
+              value={formData.username}
+              onChange={handleChange}
+            />
+          </div>
+
+          <div className="form-group">
+            {errors.password && <span className="error-message">{errors.password}</span>}
+            <label></label>
+            <input
+              type="password"
+              name="password"
+              placeholder='password'
+              value={formData.password}
+              onChange={handleChange}
+            />
+          </div>
+
+          <div className="form-group">
+            {errors.confirmPassword && <span className="error-message">{errors.confirmPassword}</span>}
+            <label></label>
+            <input
+              type="password"
+              name="confirmPassword"
+              placeholder='confirm password'
+              value={formData.confirmPassword}
+              onChange={handleChange}
+            />
+          </div>
+
+          <button className='registration-button' type="register">sign up</button>
+
+          <p className="login-footer">
+              <a href="Login.js">Already have an account?</a> 
+          </p>
+        </form>
       </div>
-    <div className="name_inputs">
-    {errors.first_name && <span style={{position:'absolute'}} className="error-message">{errors.last_name}</span>}
-          <label></label>
-          <input 
-            className="registration-input"
-            type="text"
-            name="first_name"
-            placeholder='First name'
-            value={formData.first_name}
-            onChange={handleChange}
-          />
-          <label></label>
-          <input
-            className="registration-input"
-            type="text"
-            name="last_name"
-            placeholder='Last name'
-            value={formData.last_name}
-            onChange={handleChange}
-          />
-          
-        </div>
     </div>
-       
-        <div className="form-group">
-           {errors.username && ( <span className="error-message">{errors.username}</span>)}
-          <label></label>
-          <input
-            type="text"
-            name="username"
-            placeholder='username'
-            value={formData.username}
-            onChange={handleChange}
-          />
-
-        </div>
-
-        <div className="form-group">
-          {errors.password && <span className="error-message">{errors.password}</span>}
-          <label></label>
-          <input
-            type="password"
-            name="password"
-            placeholder='password'
-            value={formData.password}
-            onChange={handleChange}
-          />
-        </div>
-
-
-        <div className="form-group">
-          {errors.confirmPassword && <span className="error-message">{errors.confirmPassword}</span>}
-          <label></label>
-          <input
-            type="password"
-            name="confirmPassword"
-            placeholder='confirm password'
-            value={formData.confirmPassword}
-            onChange={handleChange}
-          />
-        </div>
-
-        <button className='registration-button' type="register">sign up</button>
-
-        <p className="login-footer">
-            <a href="Login.js">Already have an account?</a> 
-        </p>
-</form>
-      </div>
-</div>
   );
 }
 

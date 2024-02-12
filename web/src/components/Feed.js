@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import { useNavigate } from "react-router-dom";
-
 import {useUser} from '../providers/user_context';
 
 const Feed = () => {

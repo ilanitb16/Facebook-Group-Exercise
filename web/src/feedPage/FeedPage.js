@@ -31,7 +31,7 @@ function FeedPage({ postList, setPostList, toggleTheme}) {
       console.log("User", user);
 
       if(!user?.authenticated){
-         // navigate("/login")
+         navigate("/login")
       }
   });
 

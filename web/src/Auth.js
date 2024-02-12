@@ -2,8 +2,8 @@
 
 // Simulated user data (will be replaced with actual user data later on)
 export const users = [
-    { username: 'user1', password: 'password1' },
-    { username: 'user2', password: 'password2' },
+    { username: 'user1', password: 'Password1!' },
+    { username: 'user2', password: 'Password2!' },
 ];
   
 export const authenticateUser = (username, password) => {

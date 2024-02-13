@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import './NewPost.css';
+import Info from "../info/Info.js";
 
 function NewPost({
   user_name,
@@ -67,24 +69,27 @@ function NewPost({
           {newPostInput && (
             <div className="row top-card">
               <p className="newPostContent">
-                <label>NEW POST: What would you like to share?</label>
+                <label>Create Post</label>
                 <br />
+                <label></label>
                 <br />
-                <label>Title of the post: </label>
+                <input placeholder="Title" type="text" value={title} onChange={handleTitleChange} />
                 <br />
-                <input type="text" value={title} onChange={handleTitleChange} />
+                <label></label>
                 <br />
-                <label>Description of the post:</label>
-                <br />
-                <textarea
+                <h3 className="display-pic">
+                    <img src={user_photo} className="img-profile-user" alt="..." />
+                    <b className="user-name">{"@" + user_name}</b>
+                </h3>                
+              <textarea
+                  placeholder={`What's on your mind, ${user_name}?`}
                   rows="4"
-                  style={{ width: "60%" }}
+                  style={{ width: "100%" }}
                   value={description}
                   onChange={handleDescriptionChange}
                 ></textarea>
                 <br />
-                <label>Image:</label>
-                <br />
+                <label></label>
                 <input type="file" onChange={handleImageChange} />
                 </p>
                 <div className="newPostButtons btn-group" role="group" aria-label="Basic example">

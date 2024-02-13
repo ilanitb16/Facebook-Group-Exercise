@@ -99,8 +99,9 @@ function PostItem({
                 </div>
                 <div className="editImg">
                   <br />
-                  <label>Image:</label>
+                  <label></label>
                   <br />
+                  <i className="bi bi-plus-circle-fill"></i>
                   <input type="file" onChange={handleImageChange} />
                 </div>
               </div>

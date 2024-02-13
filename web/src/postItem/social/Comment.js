@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import './Social'; // Import the CSS file for registration styles
+
 
 function Comment({ commentPressed, user_name, user_photo }) {
   const [commentContent, setCommentContent] = useState(""); //current comment being typed

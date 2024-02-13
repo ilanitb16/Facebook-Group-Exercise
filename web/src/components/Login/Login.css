@@ -24,7 +24,7 @@
     height: 67px;
     text-align: center;
     margin-bottom: 60px;
-    background-image: url('Facebook_Logo_2019.png'); /* Facebook logo image */
+    background-image: url('../../styles/Facebook_Logo_2019.png'); /* Facebook logo image */
     background-size: contain;
     position:relative; 
   }

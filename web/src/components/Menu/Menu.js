@@ -1,8 +1,9 @@
-import { useState } from "react";
 import React from 'react';
+import { useState } from "react";
+import { useUser } from '../../providers/user_context';
 
 function Menu({toggleTheme, setNewPostInput}) {
-
+  const [user, setUser] = useUser();
   const [mode, setMode] = useState(false);
 
   const handleScrollToTop = () => {
@@ -11,6 +12,10 @@ function Menu({toggleTheme, setNewPostInput}) {
       behavior: 'smooth',
     });
   };
+
+  const logout = ()=> {
+    setUser(null);
+  }
 
   return (
     <div className="menu col-2 vh-100">
@@ -55,7 +60,7 @@ function Menu({toggleTheme, setNewPostInput}) {
         </li>
         <li className="list-group-item d-flex align-items-center">
           <div className="menuObject">
-            <span className="myAccount w-100 m-1 ms-3">
+            <span className="myAccount w-100 m-1 ms-3" onClick={() => { logout();}}>
             <i className="bi bi-box-arrow-right"></i>
               <label>
                 <div className="textMenu">Log out</div>
@@ -70,7 +75,7 @@ function Menu({toggleTheme, setNewPostInput}) {
           className={`bi bi-toggle-${mode ? "on" : "off"}`}
         ></i>
               <label>
-                <div className="textMenu">change mode</div>
+                <div className="textMenu">Change Mode</div>
               </label>
             </span>
           </div>

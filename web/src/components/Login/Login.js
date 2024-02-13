@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
-import { authenticateUser } from '../Auth';
-import { useContext } from 'react';
+import { authenticateUser } from '../../Auth';
 import { useNavigate, Link } from "react-router-dom";
-import { useUser } from '../providers/user_context';
-import '../styles/Login.css'; // Import the CSS file
+import { useUser } from '../../providers/user_context';
+import './Login.css'; // Import the CSS file
 
 
 const Login = ({ darkMode, toggleDarkMode }) => {

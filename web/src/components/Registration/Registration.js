@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from "react-router-dom";
-import { users } from '../Auth.js';
-import '../styles/Registration.css'; // Import the CSS file for registration styles
+import { users } from '../../Auth.js';
+import './Registration.css'; // Import the CSS file for registration styles
 
 function Registration() {
     const navigate = useNavigate();

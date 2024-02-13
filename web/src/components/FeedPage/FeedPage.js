@@ -1,16 +1,15 @@
 import "./FeedPage.css";
 import React from "react";
 import { useState, useEffect } from "react";
-import Menu from "../menu/Menu.js";
-import Search from "../search/Search.js";
-import PostListReslts from "../postListResults/PostListResults.js";
-import posts from "../postItem/allPosts.json"
-import Info from "../info/Info.js";
 import { useNavigate } from "react-router-dom";
+import { useUser } from '../../providers/user_context';
 
-import {useUser} from '../providers/user_context';
-
-import NewPost from "../newPost/NewPost.js";
+import Menu from "../Menu/Menu.js";
+import Search from "../Search/Search.js";
+import PostListReslts from "../PostListResults/PostListResults.js";
+import posts from "../postItem/AllPosts.json"
+import Info from "../Info/Info.js";
+import NewPost from "../NewPost/NewPost.js";
 
 function FeedPage({ postList, setPostList, toggleTheme}) {
   const [user, setUser] = useUser();

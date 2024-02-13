@@ -37,7 +37,6 @@
     border-color: #1877f2;
     color: #fff;
     cursor: pointer;
-    outline: none;
     padding: 10px 20px;
     border-radius: 5px;
     font-size: 16px;
@@ -51,4 +50,5 @@
     background-color: #166fe5; /* Darker shade of Facebook blue on hover */
     border-color: #166fe5;
   }
+
   

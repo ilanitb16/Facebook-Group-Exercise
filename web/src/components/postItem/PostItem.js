@@ -1,6 +1,6 @@
 import "./PostItem.css";
 import React, { useState } from "react";
-import Social from "./social/Social";
+import Social from "./Social/Social";
 import EditPost from "./EditPost";
 
 function PostItem({

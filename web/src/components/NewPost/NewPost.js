@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import './NewPost.css';
-import Info from "../info/Info.js";
 
 function NewPost({
   user_name,
@@ -69,7 +68,7 @@ function NewPost({
           {newPostInput && (
             <div className="row top-card">
               <p className="newPostContent">
-                <label>Create Post</label>
+                <label className="post-title">Create Post</label>
                 <br />
                 <label></label>
                 <br />
@@ -90,6 +89,7 @@ function NewPost({
                 ></textarea>
                 <br />
                 <label></label>
+                <br />
                 <input type="file" onChange={handleImageChange} />
                 </p>
                 <div className="newPostButtons btn-group" role="group" aria-label="Basic example">

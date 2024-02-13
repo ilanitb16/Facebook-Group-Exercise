@@ -1,10 +1,11 @@
 import React, { useState, createContext } from 'react';
-import {createBrowserRouter, RouterProvider} from "react-router-dom"
-import Login from './components/Login';
-import Registration from './components/Registration';
+import {createBrowserRouter, RouterProvider} from "react-router-dom";
 import { UserProvider } from './providers/user_context';
-import FeedPage from './feedPage/FeedPage';
-import posts from "./postItem/allPosts.json"
+import Login from './components/Login/Login';
+import Registration from './components/Registration/Registration';
+import FeedPage from './components/FeedPage/FeedPage';
+import posts from "./components/postItem/AllPosts.json";
+
 import "./styles/app.css";
 
 export const ThemeContext = createContext(null);

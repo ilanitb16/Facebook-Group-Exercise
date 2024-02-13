@@ -16,7 +16,7 @@ h3 {
     width: 100px;
     height: 100px;
     margin-bottom: 20px;
-    background-image: url('Facebook_Logo_2019.png'); /* Facebook logo image */
+    background-image: url('../../styles/Facebook_Logo_2019.png'); /* Facebook logo image */
     background-size: cover;
     position: relative;
   }

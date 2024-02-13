@@ -8,12 +8,12 @@
     "img": "./img/img1.jpg"
   },
   {
-    "title": "audi r8",
+    "title": "my dog <3",
     "author": "ilanit berditchevski",
     "author_photo": "profile/profile2.jpg",
-    "description": "car",
+    "description": "The prettiest dog in the world.",
     "date": "26/1/2024",
-    "img": "img/img2.jpg"
+    "img": "img/laylaFlower.jpg"
   },
   {
     "title": "mercedes gts",
@@ -48,20 +48,20 @@
     "img": "img/img6.jpg"
   },
   {
-    "title": "ferrari la-ferrari",
-    "author": "on kol tzabar cohen",
-    "author_photo": "profile/profile7.jpg",
-    "description": "car",
+    "title": "with my best friend",
+    "author": "daniel cohen",
+    "author_photo": "profile/Daniel.jpg",
+    "description": "some quality time in Gan Yavne with the best dog ever!",
     "date": "1/2/2024",
-    "img": "img/img7.jpg"
+    "img": "img/laylaDaniel.jpeg"
   },
   {
-    "title": "mclaren p1",
-    "author": "noy shani",
-    "author_photo": "profile/profile8.jpg",
-    "description": "car",
+    "title": "dogging :)",
+    "author": "layla berdit",
+    "author_photo": "profile/laylaSmiling.jpg",
+    "description": "<3",
     "date": "2/2/2024",
-    "img": "img/img8.jpg"
+    "img": "img/laylaFlower2.jpg"
   },
   {
     "title": "toyota supra",

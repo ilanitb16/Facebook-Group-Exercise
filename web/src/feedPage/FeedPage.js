@@ -22,7 +22,7 @@ function FeedPage({ postList, setPostList, toggleTheme}) {
   };
 
   let user_name = user?.username;
-  let user_photo = user?.photo;// process.env.PUBLIC_URL + '/profile/user-photo.jpg';
+  let user_photo = user?.photo;
 
   useEffect(() => {
     console.log("user: ", user)

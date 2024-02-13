@@ -238,7 +238,7 @@ function Registration() {
           <button className='registration-button' type="register">sign up</button>
 
           <p className="login-footer">
-              <a href="Login.js">Already have an account?</a> 
+              <a href="/login">Already have an account?</a>  
           </p>
         </form>
       </div>

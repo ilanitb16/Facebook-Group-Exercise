@@ -68,9 +68,6 @@ const Login = ({ darkMode, toggleDarkMode }) => {
           <a href="#">Forgot Password?</a> · <Link to="/registration">Sign up for Facebook</Link>
         </p>
       </div>
-      <div>
-
-      </div>
     </div>
   );
 };

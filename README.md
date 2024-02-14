@@ -4,11 +4,11 @@ In this exercise we write a web application using JS, CSS, HTML and React, as we
 
 ### Running the application instructions:
 - `cd web` (change directory to web).
--`npm start`.
+- `npm start`.
 - node: node_modules is in git ignore so before running the code make sure to type in npm install.
 
 To run the tests:
--`npm test`.
+- `npm test`.
 
 ### Our work process: 
 

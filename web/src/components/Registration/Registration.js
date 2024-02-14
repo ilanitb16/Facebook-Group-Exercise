@@ -5,7 +5,8 @@ import './Registration.css'; // Import the CSS file for registration styles
 
 function Registration() {
     const navigate = useNavigate();
-
+    const [imageBase64, setImageBase64] = useState();
+  
     // a state var used to store data entered by user. 
     const [formData, setFormData] = useState({
         // contains key-value pairs for different form fields
@@ -32,6 +33,17 @@ function Registration() {
         [name]: name === 'photo' ? selectedFile : value,
         });
     };
+
+    const selectFile = (e) => {
+      const fileReader = new FileReader();
+      fileReader.readAsDataURL(e.target.files[0]);
+
+      fileReader.onload = () => {
+        //console.log("aaa", fileReader.result);
+        setImageBase64(fileReader.result);
+      };
+      
+    }
 
     // Validation function meeting facebook's password requirements:
     function validatePassword(password) {
@@ -144,7 +156,7 @@ function Registration() {
         password: formData.confirmPassword,
         first_name: formData.first_name,
         last_name: formData.last_name,
-        photo : formData.photo,
+        photo : imageBase64,
     }; 
 
     users.push(user);
@@ -168,15 +180,20 @@ function Registration() {
 
         <form onSubmit={handleSubmit}>
           <div className="form-group">
-            <div style={{marginTop:'15px'}} className="form-group">
+            <div style={{marginTop:'15px',display: 'flex'}} className="form-group">
+              
               <label></label>
               <input
                 type="file"
                 name="photo"
                 accept="image/*" 
-                onChange={handleChange}
+                onChange={selectFile}
               />
+              <div>
+              <img src={imageBase64} className="avatar" />
             </div>
+            </div>
+            
             <div className="name_inputs">
               {errors.first_name && <span style={{position:'absolute'}} className="error-message">{errors.last_name}</span>}
               <input 

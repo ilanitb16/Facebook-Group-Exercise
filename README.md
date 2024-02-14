@@ -16,7 +16,7 @@ To run the tests:
 
 Ori and I worked together on merging our parts and faced some technical difficulties. Making the components work together and running smoothly after the merge. Added user navigation after implementing correct user authentication logic.
 
-**Ori: ** Designing the layout for the feed screen, considering elements such as post previews, user avatars, like/share/comment buttons and functionalities, and a menu for navigation options. Develop functionality to fetch posts from a local JSON file and display them in the feed screen. Ensure smooth scrolling and efficient loading of posts. Supporting light/dark mode.
+**Ori:** Designing the layout for the feed screen, considering elements such as post previews, user avatars, like/share/comment buttons and functionalities, and a menu for navigation options. Develop functionality to fetch posts from a local JSON file and display them in the feed screen. Ensure smooth scrolling and efficient loading of posts. Supporting light/dark mode.
 
 **Shmuel:** Login and registration components on Android. Design the layout for the login and  registration screen, including input fields for username, email, password, and password confirmation, along with a register and login button Ensure secure storage and handling of user registration data. 
 

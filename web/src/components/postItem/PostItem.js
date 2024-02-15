@@ -71,7 +71,7 @@ function PostItem({
               deleteChanges={deleteChanges}
             />
           </div>
-          <img className="card-img" src={newImg} alt="..."></img>
+          <img className="card-img" src={img} alt="..."></img>
           <div className="card-body">
             {!editMode && (
               <div>

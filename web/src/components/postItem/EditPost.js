@@ -15,6 +15,8 @@ function EditPost({ title, postList, setPostList, editMode, setEditMode, deleteC
 
   const removePost = () => {
     const updatedPosts = postList.filter((post) => post.title !== title);
+
+    console.log(updatedPosts)
     setPostList(updatedPosts);
 
   };

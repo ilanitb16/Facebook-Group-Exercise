@@ -31,7 +31,6 @@ function NewPost({
   }/${currentDate.getFullYear()}`;
 
   const addPost = () => {
-    // Check if an image is selected
     const img = imgNewPost ? URL.createObjectURL(imgNewPost) : null;
 
     const newPost = {
@@ -53,12 +52,13 @@ function NewPost({
     setImgNewPost(null);
   };
 
-  const handleScrollToBottom = () => {
+  const handleScrollToTop = () => {
     window.scrollTo({
-      top: document.body.scrollHeight,
+      top: 0,
       behavior: "smooth",
     });
   };
+
 
   return (
     <div className="row post">
@@ -99,7 +99,7 @@ function NewPost({
                     onClick={() => {
                       addPost();
                       setNewPostInput(false);
-                      handleScrollToBottom();
+                      handleScrollToTop();
                     }}
                   >
                     post

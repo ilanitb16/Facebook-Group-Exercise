@@ -21,3 +21,6 @@ Ori and I worked together on merging our parts and faced some technical difficul
 **Shmuel:** Login and registration components on Android. Design the layout for the login and  registration screen, including input fields for username, email, password, and password confirmation, along with a register and login button Ensure secure storage and handling of user registration data. 
 
 Ilanit and Shmuel had similar parts in different technologies which allowed us to work together as a team and implement similar logic ideas. It allowed us to see the similarities and the differences between the two technologies. 
+
+
+### link to android git repo: https://github.com/ShmuelGranot/Facebook-iso-APP.git

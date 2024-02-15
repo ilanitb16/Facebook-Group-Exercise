@@ -11,10 +11,12 @@ import posts from "../postItem/AllPosts.json"
 import Info from "../Info/Info.js";
 import NewPost from "../NewPost/NewPost.js";
 
-function FeedPage({ postList, setPostList, toggleTheme}) {
+function FeedPage({ postList, setPostList, toggleTheme, currentUser}) {
   const [user, setUser] = useUser();
   const [newPostInput, setNewPostInput] = useState(false);
   const navigate = useNavigate();
+
+  
 
   const doSearch = function (q) {
     setPostList(posts.filter((post) => post.title.includes(q)));
@@ -24,8 +26,10 @@ function FeedPage({ postList, setPostList, toggleTheme}) {
   let user_photo = user?.photo;
 
   useEffect(() => {
-    console.log("user: ", user)
-      if(!user?.authenticated){
+    console.log(currentUser);
+    console.log(window.location.pathname);
+
+      if(!currentUser && !user?.authenticated){
         navigate("/login");
       }
       else{

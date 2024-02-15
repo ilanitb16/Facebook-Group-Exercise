@@ -1,3 +1,4 @@
+import "./Search.css";
 import { useRef } from "react";
 
 function Search({ doSearch}) {

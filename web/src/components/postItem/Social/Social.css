@@ -1,28 +1,16 @@
-.likeButton:hover {
-    filter: invert(50%);
-    cursor: pointer;
-}
-.commentButton:hover {
-    filter: invert(50%);
-    cursor: pointer;
-}
-.shareButton:hover {
+.likeButton:hover,
+ .commentButton:hover,
+ .shareButton:hover {
     filter: invert(50%);
     cursor: pointer;
 }
 
-.social {
-    display: flex;
-    align-items: center;
-  }
-  
   .likeButton,
   .commentButton,
   .shareButton {
-    margin-right: 10px; /* Adjust the value to set the space between buttons */
+    margin-right: 10px;
   }
-  
-.share-container {
+  .share-container {
     display: flex;
     align-items: center; /* Vertically center the icons */
   }
@@ -50,8 +38,6 @@
   margin-left: 10px;;
 }
 
-
-/* -------------------------------> */
 
 .comment-container {
   display: flex;
@@ -135,4 +121,10 @@
 
 .comment-actions i:hover {
   color: #333;
+}
+
+
+.social-container {
+  display: flex;
+  align-items: center;
 }

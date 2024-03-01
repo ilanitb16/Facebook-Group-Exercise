@@ -1,5 +1,4 @@
-import "./PostItem.css";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Social from "./Social/Social";
 import EditPost from "./EditPost";
 
@@ -14,21 +13,21 @@ function PostItem({
   img,
   user_name,
   user_photo,
+  friendsList,
+  setFriendsList,
 }) {
+  const [isCurrentUser] = useState(author === user_name);
   const [editMode, setEditMode] = useState(false);
   const [newTitle, setNewTitle] = useState(title);
   const [newDescription, setNewDescription] = useState(description);
   const [newImg, setNewImg] = useState(img);
+  
+  const [isFriendOrCurrentUser, setIsFriendOrCurrentUser] = useState(
+    friendsList.includes(author) || author === user_name
+  );
+  useEffect(() => {
+  }, []);
 
-  const updatePost = () => {
-    const updatedPosts = postList.map((post) =>
-      post.title === title
-        ? { ...post, title: newTitle, description: newDescription, img: newImg, Key:post.id }
-        : post
-    );
-    setPostList(updatedPosts);
-    setEditMode(false);
-  };
 
   const deleteChanges = () => {
     setNewTitle(title);
@@ -47,86 +46,91 @@ function PostItem({
     }
   };
 
+  const handleAddFriend = () => {
+    setFriendsList([...friendsList, author]);
+    setIsFriendOrCurrentUser(true);
+  };
+
   return (
     <div className="row post">
       <div className="col-5"></div>
-      <div className="col-6 main-content">
-        <div className="card" href="details.html">
-          <div className="row top-card">
-            <div className="col-9">
+      {isFriendOrCurrentUser && (
+        <div className="col-6 main-content">
+          <div className="card" href="details.html">
+            <div className="row top-card">
+              <div className="col-9">
+                <p className="card-author">
+                  <img className="img-profile" src={author_photo} alt="..." />
+                  <span className="authorInfo">
+                    <b>{"@" + author}</b>
+                    {" " + date}
+                  </span>
+                </p>
+              </div>
+              {isCurrentUser && (
+                <EditPost
+                  title={title}
+                  postList={postList}
+                  setPostList={setPostList}
+                  editMode={editMode}
+                  setEditMode={setEditMode}
+                  deleteChanges={deleteChanges}
+                />
+              )}
+            </div>
+            <img className="card-img" src={img} alt="..." />
+            <div className="card-body">
+              {!editMode && (
+                <div>
+                  <h5 className="card-title">{title}</h5>
+                  <p className="card-description">{description}</p>
+                </div>
+              )}
+              {editMode && (
+                <div className="editPost">
+                  <label>Title:</label>
+                  <input type="text" value={newTitle} onChange={(e) => setNewTitle(e.target.value)} />
+                  <br />
+                  <div className="description">
+                    <label>Description:</label>
+                    <textarea
+                      rows="1"
+                      value={newDescription}
+                      style={{ width: "60%" }}
+                      onChange={(e) => setNewDescription(e.target.value)}
+                    ></textarea>
+                  </div>
+                  <div className="editImg">
+                    <br />
+                    <label></label>
+                    <br />
+                    <i className="bi bi-plus-circle-fill"></i>
+                    <input type="file" onChange={handleImageChange} />
+                  </div>
+                </div>
+              )}
+            </div>
+            <Social user_name={user_name} user_photo={user_photo} />
+          </div>
+        </div>
+      )}
+      {!isFriendOrCurrentUser && (
+        <div className="col-6 main-content">
+          <div className="card" href="details.html">
+            <div className="row top-card">
               <p className="card-author">
-                <img className="img-profile" src={author_photo} alt="..."></img>
+                <img className="img-profile" src={author_photo} alt="..." />
                 <span className="authorInfo">
                   <b>{"@" + author}</b>
-                  {" " + date}
                 </span>
               </p>
-            </div>
-            <EditPost
-              title={title}
-              postList={postList}
-              setPostList={setPostList}
-              editMode={editMode}
-              setEditMode={setEditMode}
-              deleteChanges={deleteChanges}
-            />
-          </div>
-          <img className="card-img" src={img} alt="..."></img>
-          <div className="card-body">
-            {!editMode && (
-              <div>
-                <h5 className="card-title">{title}</h5>
-                <p className="card-description">{description}</p>
+              <div className="w-90 text-end">
+                <i className="addFriend bi bi-person-fill-add" style={{ fontSize: "1.6rem" }} onClick={handleAddFriend}></i>
               </div>
-            )}
-            {editMode && (
-              <div className="editPost">
-                <label>Title:</label>
-                <input
-                  type="text"
-                  value={newTitle}
-                  onChange={(e) => setNewTitle(e.target.value)}
-                />
-                <br />
-                <div className="description">
-                  <label>Description:</label>
-                  <textarea
-                    rows="1"
-                    value={newDescription}
-                    style={{ width: "60%" }}
-                    onChange={(e) => setNewDescription(e.target.value)}
-                  ></textarea>
-                </div>
-                <div className="editImg">
-                  <br />
-                  <label></label>
-                  <br />
-                  <i className="bi bi-plus-circle-fill"></i>
-                  <input type="file" onChange={handleImageChange} />
-                </div>
-              </div>
-            )}
-          </div>
-          <Social user_name={user_name} user_photo={user_photo} />
-          {editMode && (
-            <div className="editButtons">
-              <button key="update" onClick={updatePost} className="fs-6">
-                Update
-              </button>
-              <button
-                key="cancel"
-                onClick={() => {
-                  deleteChanges();
-                  setEditMode(false);
-                }}
-                className="fs-6"
-              >
-                Cancel
-              </button>
             </div>
-          )}
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 }

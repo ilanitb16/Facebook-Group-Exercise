@@ -14,6 +14,7 @@ import NewPost from "../NewPost/NewPost.js";
 function FeedPage({ postList, setPostList, toggleTheme, currentUser}) {
   const [user, setUser] = useUser();
   const [newPostInput, setNewPostInput] = useState(false);
+  const [friendsList, setFriendsList] = useState([]);
   const navigate = useNavigate();
 
   
@@ -35,6 +36,7 @@ function FeedPage({ postList, setPostList, toggleTheme, currentUser}) {
       else{
         user_name = user?.username;
         user_photo = user?.photo;
+        setFriendsList(["ori levi", "shmuel granot"]);
       }
   });
 
@@ -44,7 +46,7 @@ function FeedPage({ postList, setPostList, toggleTheme, currentUser}) {
       <div className="col-9 main-content">
         <Search doSearch={doSearch} />
         <NewPost postList={postList} setPostList={setPostList} user_name={user_name} user_photo={user_photo} newPostInput={newPostInput} setNewPostInput={setNewPostInput}/>
-        <PostListReslts posts={postList} postList={postList} setPostList={setPostList} user_name={user_name} user_photo={user_photo} />
+        <PostListReslts posts={postList} postList={postList} setPostList={setPostList} user_name={user_name} user_photo={user_photo} friendsList={friendsList} setFriendsList={setFriendsList}/>
         <div><label></label></div>
         <div><label></label></div>
         <div><label></label></div>

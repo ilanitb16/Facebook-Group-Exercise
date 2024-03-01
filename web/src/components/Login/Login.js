@@ -15,6 +15,24 @@ const Login = ({ darkMode, toggleDarkMode }) => {
   const [loggedIn, setLoggedIn] = useState(false); // flag to track login status
   const [errorMessage, setErrorMessage] = useState(''); // State variable for error message
 
+
+
+const authenticateUser = (username, password) => {
+    // Define the default user
+    const defaultUser = { username: '1', password: '1', photo: 'default.jpg' };
+
+    // Check if the provided username and password match the default user
+    if (username === defaultUser.username && password === defaultUser.password) {
+      return defaultUser; // Return the default user if authentication is successful
+    } else {
+      return null; // Return null if authentication fails
+    }
+  };
+
+
+
+
+
   const handleLogin = () => {
     const user = authenticateUser(username, password);
 

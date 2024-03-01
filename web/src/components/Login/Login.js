@@ -14,6 +14,20 @@ const Login = ({ darkMode, toggleDarkMode }) => {
   const [password, setPassword] = useState(''); // init state variable with value = empty string ''
   const [loggedIn, setLoggedIn] = useState(false); // flag to track login status
   const [errorMessage, setErrorMessage] = useState(''); // State variable for error message
+// Assume authenticateUser function is defined in '../../Auth' module
+
+
+ const authenticateUser = (username, password) => {
+  // Define the default user
+  const defaultUser = { username: '1', password: '1', photo: 'default.jpg' };
+
+  // Check if the provided username and password match the default user
+  if (username === defaultUser.username && password === defaultUser.password) {
+    return defaultUser; // Return the default user if authentication is successful
+  } else {
+    return null; // Return null if authentication fails
+  }
+};
 
   const handleLogin = () => {
     const user = authenticateUser(username, password);
@@ -30,6 +44,7 @@ const Login = ({ darkMode, toggleDarkMode }) => {
       }
   };
 
+  
   return (
    // <div className={`login-container ${darkMode ? 'dark-mode' : ''}`}>
 

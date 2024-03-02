@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Social from "./Social/Social";
 import EditPost from "./EditPost";
 
@@ -22,12 +22,7 @@ function PostItem({
   const [newDescription, setNewDescription] = useState(description);
   const [newImg, setNewImg] = useState(img);
   
-  const [isFriendOrCurrentUser, setIsFriendOrCurrentUser] = useState(
-    friendsList.includes(author) || author === user_name
-  );
-  useEffect(() => {
-  }, []);
-
+  const isFriendOrCurrentUser = friendsList.includes(author) || author === user_name;
 
   const deleteChanges = () => {
     setNewTitle(title);
@@ -47,8 +42,7 @@ function PostItem({
   };
 
   const handleAddFriend = () => {
-    setFriendsList([...friendsList, author]);
-    setIsFriendOrCurrentUser(true);
+    setFriendsList((prevFriendsList) => [...prevFriendsList, author]);
   };
 
   return (

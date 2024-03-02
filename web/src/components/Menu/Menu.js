@@ -2,9 +2,10 @@ import React from 'react';
 import { useState } from "react";
 import { useUser } from '../../providers/user_context';
 
-function Menu({toggleTheme, setNewPostInput}) {
+function Menu({toggleTheme, setNewPostInput, friendsList, setFriendsList}) {
   const [user, setUser] = useUser();
   const [mode, setMode] = useState(false);
+  const [showFriends, setShowFriends] = useState(false);
 
   const handleScrollToTop = () => {
     window.scrollTo({
@@ -60,7 +61,7 @@ function Menu({toggleTheme, setNewPostInput}) {
         </li>
         <li className="list-group-item d-flex align-items-center">
           <div className="menuObject">
-            <span className="myAccount w-100 m-1 ms-3" onClick={() => { logout();}}>
+            <span className="logOut w-100 m-1 ms-3" onClick={() => { logout();}}>
             <i className="bi bi-box-arrow-right"></i>
               <label>
                 <div className="textMenu">Log out</div>
@@ -70,7 +71,7 @@ function Menu({toggleTheme, setNewPostInput}) {
         </li>
         <li className="list-group-item d-flex align-items-center">
           <div className="menuObject">
-          <span className="myAccount w-100 m-1 ms-3" onClick={() => { toggleTheme(); setMode(!mode); }}>
+          <span className="ChangeTheme w-100 m-1 ms-3" onClick={() => { toggleTheme(); setMode(!mode); }}>
             <i
           className={`bi bi-toggle-${mode ? "on" : "off"}`}
         ></i>
@@ -80,7 +81,29 @@ function Menu({toggleTheme, setNewPostInput}) {
             </span>
           </div>
         </li>
+        <li className="list-group-item d-flex align-items-center">
+          <div className="menuObject">
+            <span className="myFriends w-100 m-1 ms-3" onClick={() => setShowFriends(!showFriends)}>
+            <i className="bi bi-people-fill"></i>
+              <label>
+                <div className="textMenu">My friends</div>
+              </label>
+            </span>
+          </div>
+        </li>
       </ul>
+      {showFriends && (
+        <div>
+          <div><label></label></div>
+          <div><label></label></div>
+          <h3>Friends</h3>
+          <ul>
+            {friendsList.map((friend, index) => (
+              <li key={index}>{friend}</li>
+            ))}
+          </ul>
+        </div>
+      )}
     </div>
   );
 }

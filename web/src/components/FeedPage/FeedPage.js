@@ -30,19 +30,18 @@ function FeedPage({ postList, setPostList, toggleTheme, currentUser}) {
     console.log(currentUser);
     console.log(window.location.pathname);
 
-      if(!currentUser && !user?.authenticated){
-        navigate("/login");
-      }
-      else{
-        user_name = user?.username;
-        user_photo = user?.photo;
-        setFriendsList(["ori levi", "shmuel granot"]);
-      }
-  });
+    if (!currentUser && !user?.authenticated) {
+      navigate("/login");
+    } else {
+      user_name = user?.username;
+      user_photo = user?.photo;
+      setFriendsList(["ori levi", "shmuel granot"]);
+    }
+  }, []);
 
   return (
     <React.Fragment>
-      <Menu toggleTheme={toggleTheme} setNewPostInput={setNewPostInput} />
+      <Menu toggleTheme={toggleTheme} setNewPostInput={setNewPostInput} friendsList={friendsList} setFriendsList={setFriendsList}/>
       <div className="col-9 main-content">
         <Search doSearch={doSearch} />
         <NewPost postList={postList} setPostList={setPostList} user_name={user_name} user_photo={user_photo} newPostInput={newPostInput} setNewPostInput={setNewPostInput}/>
@@ -57,3 +56,4 @@ function FeedPage({ postList, setPostList, toggleTheme, currentUser}) {
 }
 
 export default FeedPage;
+

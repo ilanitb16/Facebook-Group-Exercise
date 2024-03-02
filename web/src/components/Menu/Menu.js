@@ -1,12 +1,13 @@
 import React from 'react';
 import { useState } from "react";
 import { useUser } from '../../providers/user_context';
+import { useNavigate, Link } from "react-router-dom";
 
 function Menu({toggleTheme, setNewPostInput, friendsList, setFriendsList}) {
   const [user, setUser] = useUser();
   const [mode, setMode] = useState(false);
   const [showFriends, setShowFriends] = useState(false);
-
+  const navigate = useNavigate()
   const handleScrollToTop = () => {
     window.scrollTo({
       top: 0,
@@ -15,7 +16,7 @@ function Menu({toggleTheme, setNewPostInput, friendsList, setFriendsList}) {
   };
 
   const logout = ()=> {
-    setUser(null);
+    navigate("/login");
   }
 
   return (

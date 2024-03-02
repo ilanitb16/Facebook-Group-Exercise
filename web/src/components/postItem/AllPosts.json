@@ -4,7 +4,7 @@
     "author": "ori levi",
     "author_photo": "profile/profile1.jpg",
     "description": "car1",
-    "date": "25/1/2024",
+    "date": "4/2/2024",
     "img": "./img/img1.jpg"
   },
   {
@@ -12,7 +12,7 @@
     "author": "ilanit berditchevski",
     "author_photo": "profile/profile2.jpg",
     "description": "The prettiest dog in the world.",
-    "date": "26/1/2024",
+    "date": "3/2/2024",
     "img": "img/laylaflower.jpg"
   },
   {
@@ -20,7 +20,7 @@
     "author": "shmuel granot",
     "author_photo": "profile/profile3.jpg",
     "description": "car2",
-    "date": "27/1/2024",
+    "date": "2/2/2024",
     "img": "img/img3.jpg"
   },
   {
@@ -28,7 +28,7 @@
     "author": "dvir yazdi",
     "author_photo": "profile/profile4.jpg",
     "description": "car3",
-    "date": "28/1/2024",
+    "date": "1/2/2024",
     "img": "img/img4.jpg"
   },
   {
@@ -36,7 +36,7 @@
     "author": "tzuriel luzon",
     "author_photo": "profile/profile5.jpg",
     "description": "car4",
-    "date": "29/1/2024",
+    "date": "30/1/2024",
     "img": "img/img5.jpg"
   },
   {
@@ -44,7 +44,7 @@
     "author": "noam leibovich",
     "author_photo": "profile/profile6.jpg",
     "description": "car5",
-    "date": "30/1/2024",
+    "date": "29/1/2024",
     "img": "img/img6.jpg"
   },
   {
@@ -52,7 +52,7 @@
     "author": "daniel cohen",
     "author_photo": "profile/daniel.jpg",
     "description": "some quality time in Gan Yavne with the best dog ever!",
-    "date": "1/2/2024",
+    "date": "28/1/2024",
     "img": "img/layladaniel.jpeg"
   },
   {
@@ -60,7 +60,7 @@
     "author": "layla berdit",
     "author_photo": "profile/laylaSmiling.jpg",
     "description": "<3",
-    "date": "2/2/2024",
+    "date": "27/1/2024",
     "img": "img/laylaflower2.jpg"
   },
   {
@@ -68,7 +68,7 @@
     "author": "arnon lutsky",
     "author_photo": "profile/profile9.jpg",
     "description": "car7",
-    "date": "3/2/2024",
+    "date": "26/1/2024",
     "img": "img/img9.jpg"
   },
   {
@@ -76,8 +76,7 @@
     "author": "or hazav",
     "author_photo": "profile/profile10.jpg",
     "description": "car8",
-    "date": "4/2/2024",
+    "date": "25/1/2024",
     "img": "img/img10.jpg"
   }
-
 ]

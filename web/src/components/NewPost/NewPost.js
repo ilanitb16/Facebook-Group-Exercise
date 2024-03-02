@@ -42,7 +42,7 @@ function NewPost({
       img: img,
     };
 
-    setPostList([...postList, newPost]);
+    setPostList([newPost, ...postList, ]);
     deleteData();
   };
 

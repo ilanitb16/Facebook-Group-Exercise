@@ -24,11 +24,22 @@ function PostItem({
   
   const isFriendOrCurrentUser = friendsList.includes(author) || author === user_name;
 
+  const updatePost = () => {
+    const updatedPosts = postList.map((post) =>
+      post.title === title
+        ? { ...post, title: newTitle, description: newDescription, img: newImg, Key:post.id }
+        : post
+    );
+    setPostList(updatedPosts);
+    setEditMode(false);
+  };
+
   const deleteChanges = () => {
     setNewTitle(title);
     setNewDescription(description);
     setNewImg(img);
   };
+
 
   const handleImageChange = (event) => {
     const file = event.target.files[0];
@@ -105,6 +116,23 @@ function PostItem({
               )}
             </div>
             <Social user_name={user_name} user_photo={user_photo} />
+            {editMode && (
+            <div className="editButtons">
+              <button key="update" onClick={updatePost} className="fs-6">
+                Update
+              </button>
+              <button
+                key="cancel"
+                onClick={() => {
+                  deleteChanges();
+                  setEditMode(false);
+                }}
+                className="fs-6"
+              >
+                Cancel
+              </button>
+            </div>
+          )}
           </div>
         </div>
       )}

@@ -10,7 +10,8 @@
   right: 10px;
 }
 
-#dark .menuObject{
+#dark .menuObject,
+#dark .friendList{
   filter: invert(100%);
 }
 #dark .menuObject:hover{

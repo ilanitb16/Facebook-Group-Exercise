@@ -94,7 +94,7 @@ function Menu({toggleTheme, setNewPostInput, friendsList, setFriendsList}) {
         </li>
       </ul>
       {showFriends && (
-        <div>
+        <div className="friendList">
           <div><label></label></div>
           <div><label></label></div>
           <h3>Friends</h3>

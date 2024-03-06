@@ -218,3 +218,117 @@ async function signIn(request, response, next){
         ok(response, result)
     }
 }
+
+// Function to fetch user data by username
+async function getUser(request, response, next){
+    try{
+        let result; // Initialize a variable to store the result
+        // Search for a user in the database with the provided username
+        let dbResult = await db.collection("users").findOne({username: request.params.id});
+        
+        // Check if user data is found in the database
+        if(dbResult){
+            // If user data is found, set response status to 200 OK
+            result = {status:200, result:dbResult}
+        }
+        else{
+            // If user data is not found, set response status to 500 Internal Server Error
+            result = {status:500, result: {message:"Server error"}}
+        }
+        // Send response with the result
+        ok(response, result);
+    }
+    catch(error){
+        // If an error occurs during user retrieval, send 500 Internal Server Error response
+        result = {status:500, result:{error:error.message}}
+        ok(response, result)
+    }
+}
+
+// Function to handle a request to delete a user from a database
+async function deleteUser(request, response, next){
+    try{
+        // Initialize variables
+        let result;
+        // Define filter to find user by username
+        let filter = {username: request.params.id};
+        // Delete user from the database
+        let dbResult = await db.collection("users").deleteOne(filter);
+        
+        // Check if deletion was successful
+        if(dbResult){
+            // If successful, prepare response with status 200 and number of deleted documents
+            result = {status:200, result:{deletedCount: dbResult.deletedCount}}
+        }
+        else{
+            // If deletion failed, prepare response with status 500 and error message
+            result = {status:500, result: {message:"Server error"}}
+        }
+        // Send response with the result
+        ok(response, result);
+    }
+    catch(error){
+        // If an error occurred during deletion, prepare response with status 500 and error message
+        result = {status:500, result:{error:error.message}}
+        // Send response with the error
+        ok(response, result)
+    }
+}
+
+// Function to handle the creation of a new post
+async function createPost(request, response, next){
+    let result = {}; // Object to store the result of the operation
+    let post = {}; // Object to store the post data
+    
+    // Check if the request contains an ID parameter
+    if(request.params.id){
+        post.username = request.params.id // Assign the ID to the post's username
+    }
+
+    // Check if the request body contains a description
+    if(request.body.description){
+        post.description = request.body.description // Assign the description to the post
+    }
+    
+    // Check if the request body contains an image
+    if(request.body.img){
+        post.img = request.body.img // Assign the image to the post
+    }
+    
+    // Check if the request body contains a title
+    if(request.body.title){
+        post.title = request.body.title // Assign the title to the post
+    }
+    
+    // Check if the request body contains a profile picture
+    if(request.body.profilePic){
+        post.profilePic = request.body.profilePic // Assign the profile picture to the post
+    }
+    
+    // Check if the request body contains a date
+    if(request.body.date){
+        post.date = request.body.date // Assign the date to the post
+    }
+
+    // Add the current date to the post's creation date
+    post.create_date = new Date().toISOString()
+
+    try{
+        // Attempt to insert the post into the database
+        let dbRes = await db.collection("posts").insertOne(post);
+        
+        // If the insertion is successful
+        if(dbRes){
+            result = {status:200, result:{insertedId:dbRes.insertedId}} // Set the result with the inserted ID
+        }
+        else{
+            result = {status:500, result: {message:"Server error"}} // Set a server error message
+        }
+        ok(response, result) // Send the result to the client
+        
+    }
+    catch(error){
+        result = {status:500, result:{error:error.message}} // Set an error message if there's an exception
+        ok(response, result) // Send the error message to the client
+    }
+}

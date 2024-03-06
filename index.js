@@ -332,3 +332,71 @@ async function createPost(request, response, next){
         ok(response, result) // Send the error message to the client
     }
 }
+
+// Function to retrieve posts from the database and send them back as a response to the client
+async function posts(request, response, next){
+    let result; // To store the final result
+    let dbFriendsPostsResult = []; // To store posts from friends
+    let dbPostsResult = []; // To store other posts
+    let dbResult; // To store the combined result
+    try{
+        let decoded = request.decoded; // Decoding the request, assuming it contains user information
+        if(decoded){
+            // Extracting user information from decoded data
+            let user = {
+                username:decoded.username, 
+                password:decoded.password
+            };
+
+            // Querying the database to find the user's information
+            let dbResultUser = await db.collection("users").findOne({username: user.username});
+            console.log("dbResultUser", dbResultUser)
+
+            // Checking if the user has friends
+            if(dbResultUser.friends && dbResultUser.friends.length > 0){
+                // If the user has friends, preparing a query to fetch their posts
+                let friendsFilter = {$match: {username: {$in:dbResultUser.friends} }};
+                let friendsPostsQuery = [
+                    friendsFilter,
+                    {$sort: {  'create_date': -1 }}, // Sorting posts by creation date
+                    {$limit: 20 } // Limiting to 20 posts
+                ] 
+                // Executing the query to get posts from friends
+                dbFriendsPostsResult = await db.collection("posts").aggregate(friendsPostsQuery).toArray();
+                console.log("dbResultdbFriendsPostsResultUser", dbFriendsPostsResult);
+
+                // Preparing a query to fetch posts from users who are not friends
+                let filter = {$match: {username: {$not: {$in:dbResultUser.friends}} }};
+                let postsQuery = [
+                    filter,
+                    {$sort: {  'create_date': -1 }}, // Sorting posts by creation date
+                    {$limit: 5 } // Limiting to 5 posts
+                ] 
+                // Executing the query to get posts from non-friends
+                dbPostsResult = await db.collection("posts").aggregate(postsQuery).toArray();
+                console.log("dbPostsResult", dbPostsResult);
+
+                // Combining the posts from friends and non-friends
+                dbResult = dbFriendsPostsResult.concat(dbPostsResult)
+            }
+            else{
+                // If the user has no friends, fetching the latest 5 posts
+                dbResult =  await db.collection("posts").find().sort({'create_date': -1}).limit(5).toArray();
+            }
+ 
+            // Setting up the final result with a status of 200 and the combined posts
+            result = {status:200, result: dbResult};
+            ok(response, result); // Sending the result to the client
+        }
+        else{
+            // If decoding failed or user information is not available, sending a server error message
+            result = {status: 500, result: {message:"Server error"}};
+            ok(response, result); 
+        }
+    }
+    catch(err){
+        // Catching any errors that occur during the execution and sending an error message
+        result = {status: 500, result: {message:err.message}};
+        ok(response, result);
+    }
+}

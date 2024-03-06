@@ -122,3 +122,99 @@ function verifyToken(request, response, next) {
     }
 };
 
+// Function to handle user sign-up
+async function signUp(request, response, next){
+    let result = {};
+    let user = {};
+
+    // Check if username is provided in the request body
+    if(request.body.username){
+        // Check if username already exists in the database
+        let searchedUser = await db.collection("users").findOne({username: request.body.username});
+        if(searchedUser){
+            // If username exists, send 409 Conflict response
+            result.status = 409;
+            result.result = {message:"User name already exists"}
+            ok(response, result);
+            return
+        }
+        else{
+            // If username is unique, add it to the user object
+            user.username = request.body.username
+        }
+    }
+    
+    // Add password, display name, and profile picture to the user object if provided
+    if(request.body.password){
+        user.password = request.body.password
+    }
+    if(request.body.displayName){
+        user.displayName = request.body.displayName
+    }
+    if(request.body.profilePic){
+        user.profilePic = request.body.profilePic
+    }
+
+    try{
+        // Insert the user object into the users collection in MongoDB
+        let dbRes = await db.collection("users").insertOne(user);
+        if(dbRes){
+            // If insertion is successful, send 200 OK response with inserted user's ID
+            result = {status:200, result:{insertedId:dbRes.insertedId}}
+        }
+        else{
+            // If insertion fails, send 500 Internal Server Error response
+            result = {status:500, result:{}}
+        }
+        ok(response, result)
+        
+    }
+    catch(error){
+        // If an error occurs during user registration, send 500 Internal Server Error response
+        result = {status:500, result:{error:error.message}}
+        ok(response, result)
+    }
+}
+
+// Function to handle user sign-in
+async function signIn(request, response, next){
+    let result = {}; // Initialize an empty object to store the result
+    let user = {}; // Initialize an empty object to store user data
+    let token; // Initialize a variable to store the JWT token
+    
+    try{
+        // Check if both username and password are provided in the request body
+        if(request.body.username && request.body.password){
+            // Search for a user in the database with the provided username and password
+            let searchedUser = await db.collection("users").findOne({username: request.body.username, password: request.body.password});
+            if(searchedUser){
+                // If a user is found, generate a JWT token
+                token = jwt.sign(request.body, privateKey, {
+                    expiresIn: '200d', // Set token expiration time
+                });
+                // Set response status to 200 OK
+                result.status = 200;
+                // Set the result object with user data and token
+                result.result = {user:searchedUser, token:token};
+            }
+            else{
+                // If user authentication fails, set response status to 404 Not Found
+                result.status = 404;
+                result.result = "Authentication failed"
+            }
+        }
+        else{
+            // If either username or password is missing, set response status to 500 Internal Server Error
+            result.status = 500;
+            result.result = "Request error"
+        }
+        // Send response with the result
+        ok(response, result);
+        
+    }
+    catch(error){
+        // If an error occurs during sign-in, send 500 Internal Server Error response
+        result = {status:500, result:{error:error.message}}
+        ok(response, result)
+    }
+}

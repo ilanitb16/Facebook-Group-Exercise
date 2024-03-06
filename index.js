@@ -400,3 +400,55 @@ async function posts(request, response, next){
         ok(response, result);
     }
 }
+
+async function getUserPosts(request, response, next){
+    let result;
+    
+    try{
+        let decoded = request.decoded;
+        let friend;
+        if(decoded){
+            let username = request.params.id;
+
+            let authUser = {
+                username:decoded.username, 
+                password:decoded.password
+            };
+
+            let user = await db.collection("users").findOne({username: username });
+
+            if(user && user.friends){
+                friend = user.friends.find(friend => friend == authUser.username);
+                if(friend){
+                    let filter = {$match:{username: username }};
+                    query = [
+                        filter, 
+                        {$sort: {'create_date': -1 }},
+                    ]
+    
+                    let dbResult = await db.collection("posts").aggregate(query).toArray();
+                    result = {status:200, result: dbResult};
+                    
+                }
+                else{
+                    result = {status:200, result: []};
+                }
+            }
+            else{
+                result = {status:200, result: []};
+            }
+            
+            ok(response, result);
+            
+        }
+        else{
+            result = {status: 500, result: {message:"Server error"}};
+            ok(response, result); 
+        }
+    }
+    catch(err){
+        result = {status: 500, result: {message:err.message}};
+        ok(response, result);
+    }
+    
+}

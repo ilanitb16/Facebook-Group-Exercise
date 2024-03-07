@@ -236,70 +236,6 @@ async function posts(request, response, next){
             result = {status:200, result: dbResult};
             ok(response, result);
 
-            // let filter = {
-            //     $match: {username: user.username }
-            // };
-
-            
-
-            // let friendsPostsLookup = {
-            //     $lookup:{
-            //         from: "posts",
-            //         localField: 'friends',
-            //         foreignField: "username",
-            //         as: "posts",
-            //         pipeline: [
-            //             {'$sort': {  'create_date': -1 }},
-            //             {'$limit': 20 },                    
-            //         ],
-            //      }
-            // }
-            // let friendsPostsQuery = [
-            //     filter,
-            //     friendsPostsLookup,
-            // ];
-
-            // let postsLookup = {
-            //     $lookup:{
-            //         from: "posts",
-            //         let: {
-            //             friends: "$friends",
-            //             user: "$username"
-            //         },
-            //         as: "posts",
-            //         pipeline: [
-            //             { 
-            //                 $match: {
-            //                     $expr:{
-            //                         $and: [
-            //                             {
-            //                                 $not: {
-            //                                     $in: [
-            //                                       "$username",
-            //                                       "$$friends"
-            //                                     ]
-            //                                 }
-            //                             },
-            //                             {
-            //                                 $ne: ["$username", "$$user"]
-            //                             }
-            //                         ]
-            //                     }
-                                
-            //                 }
-            //             },
-            //             {'$sort': {  'create_date': -1 }},
-            //             {'$limit': 5 },                    
-            //         ],
-            //      }
-            // }
-            // let postsQuery = [
-            //     filter,
-            //     postsLookup
-            // ]
-
-            // let dbFriendsPostsResult = await db.collection("users").aggregate(friendsPostsQuery).toArray();
-            // let dbPostsResult = await db.collection("users").aggregate(postsQuery).toArray(); 
         }
         else{
             result = {status: 500, result: {message:"Server error"}};
@@ -310,8 +246,6 @@ async function posts(request, response, next){
         result = {status: 500, result: {message:err.message}};
         ok(response, result);
     }
-    
-
     
 }
 
@@ -359,7 +293,6 @@ async function deleteUser(request, response, next){
         ok(response, result); // Send response
     }
 }
-
 
 // Function to update user data
 async function updateUser(request, response, next){
@@ -472,7 +405,6 @@ async function getUserPosts(request, response, next){
         ok(response, result); // Send response
     }
 }
-
 
 // Function to create a new post
 async function createPost(request, response, next){
@@ -800,9 +732,3 @@ async function deleteFriendsRequest(request, response, next){
         ok(response, result); // Send response
     }
 }
-
-
-
-
-
-

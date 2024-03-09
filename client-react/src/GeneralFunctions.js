@@ -178,3 +178,36 @@ const signIn = async(body) => {
         resolve(result)
     })
 }
+
+const getPosts = async (body) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            let result = await get('posts');
+            resolve(result);
+        } catch (error) {
+            reject(error);
+        }
+    });
+};
+
+const createPost = async (id, body) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            let result = await post(`users/${id}/posts`, body);
+            resolve(result);
+        } catch (error) {
+            reject(error);
+        }
+    });
+};
+
+const updateUserPost = async (id, pid, body) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            let result = await put(`users/${id}/posts/${pid}`, body);
+            resolve(result);
+        } catch (error) {
+            reject(error);
+        }
+    });
+};

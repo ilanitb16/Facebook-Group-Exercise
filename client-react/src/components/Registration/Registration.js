@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from "react-router-dom";
 import { users } from '../../Auth.js';
+import { signUp } from '../../GeneralFunctions.js'
 import './Registration.css'; // Import the CSS file for registration styles
 
 function Registration() {
@@ -15,23 +16,23 @@ function Registration() {
         username: '',
         password: '',
         confirmPassword: '',
-        photo: null, 
+        profilePic: null, 
     });
 
     const [errors, setErrors] = useState({});
 
     const handleChange = (e) => {
-        const { name, value } = e.target;
+      const { name, value } = e.target;
 
-        const selectedFile = e.target.files && e.target.files.length > 0 ? e.target.files[0] : null; // Check if files exist and if there's at least one file selected
+      const selectedFile = e.target.files && e.target.files.length > 0 ? e.target.files[0] : null; // Check if files exist and if there's at least one file selected
 
-        //const selectedFile = e.target.files[0]; // Access files from e.target
-    
-        setFormData({
-        ...formData,
-      //  [name]: value,
-        [name]: name === 'photo' ? selectedFile : value,
-        });
+      //const selectedFile = e.target.files[0]; // Access files from e.target
+  
+      setFormData({
+      ...formData,
+    //  [name]: value,
+      [name]: name === 'profilePic' ? selectedFile : value,
+      });
     };
 
     const selectFile = (e) => {
@@ -129,15 +130,15 @@ function Registration() {
     
     }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault(); //  prevent page from getting reloaded (otherwise we will loose our state)
      
   // Validate form fields
-  const firstnameError =  validateName(formData.first_name);
-  const lastnameError =  validateName(formData.last_name);
-  const usernameError = validateUsername(formData.username);
-  const passwordError = validatePassword(formData.password);
-  const confirmPasswordError = validateConfirmPassword(formData.password, formData.confirmPassword);
+    const firstnameError =  validateName(formData.first_name);
+    const lastnameError =  validateName(formData.last_name);
+    const usernameError = validateUsername(formData.username);
+    const passwordError = validatePassword(formData.password);
+    const confirmPasswordError = validateConfirmPassword(formData.password, formData.confirmPassword);
 
   // Check for validation errors
   if (firstnameError !== '' || lastnameError !== ''|| passwordError !== '' || confirmPasswordError !== '' || usernameError !== ''){
@@ -154,15 +155,12 @@ function Registration() {
     const user = {
         username: formData.username,
         password: formData.confirmPassword,
-        first_name: formData.first_name,
-        last_name: formData.last_name,
-        photo : imageBase64,
+        displayName: `${formData.first_name} ${formData.last_name}`,
+        profilePic : imageBase64,
     }; 
 
-    users.push(user);
+    await signUp(user);
     navigate("/");
-    
-    console.log('Registration data:', formData);
     setErrors({});
 
     }
@@ -185,7 +183,7 @@ function Registration() {
               <label></label>
               <input
                 type="file"
-                name="photo"
+                name="profilePic"
                 accept="image/*" 
                 onChange={selectFile}
               />

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { authenticateUser } from '../../Auth';
 import { useNavigate, Link } from "react-router-dom";
 import { useUser } from '../../providers/user_context';
+import { signIn } from '../../GeneralFunctions.js'
 import './Login.css'; // Import the CSS file
 
 
@@ -14,37 +15,22 @@ const Login = ({ darkMode, toggleDarkMode }) => {
   const [password, setPassword] = useState(''); // init state variable with value = empty string ''
   const [loggedIn, setLoggedIn] = useState(false); // flag to track login status
   const [errorMessage, setErrorMessage] = useState(''); // State variable for error message
-// Assume authenticateUser function is defined in '../../Auth' module
 
-
- const authenticateUser = (username, password) => {
-  // Define the default user
-  const defaultUser = { username: '1', password: '1', photo: 'default.jpg' };
-
-  // Check if the provided username and password match the default user
-  if (username === defaultUser.username && password === defaultUser.password) {
-    return defaultUser; // Return the default user if authentication is successful
-  } else {
-    return null; // Return null if authentication fails
-  }
-};
-
-  const handleLogin = () => {
-    const user = authenticateUser(username, password);
+  const handleLogin = async() => {
+    const user =  await signIn({username:username, password:password});
 
     if (user) {
-        // Authentication successful
-        setLoggedIn(true);
-        setUser({authenticated: true, username: user.username, photo: user.photo});
-        navigate("/");
-        
-      } else {
-        // Authentication failed
-        setErrorMessage('Incorrect username or password. Please try again.'); // Set error message
-      }
+      // Authentication successful
+      setLoggedIn(true);
+      setUser(user.user);
+      navigate("/");
+      
+    } else {
+      // Authentication failed
+      setErrorMessage('Incorrect username or password. Please try again.'); // Set error message
+    }
   };
 
-  
   return (
    // <div className={`login-container ${darkMode ? 'dark-mode' : ''}`}>
 

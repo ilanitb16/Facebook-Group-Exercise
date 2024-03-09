@@ -211,3 +211,28 @@ const updateUserPost = async (id, pid, body) => {
         }
     });
 };
+
+const updateUser = async (id, body) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            let result = await put(`users/${id}`, body);
+            resolve(result);
+        } catch (error) {
+            reject(error);
+        }
+    });
+};
+
+const getUser = async (id) => {
+    return new Promise(async (resolve, reject) => {
+        let result = await get(`users/${id}`);
+        resolve(result);
+    });
+};
+
+const deleteUser = async (id) => {
+    return new Promise(async (resolve, reject) => {
+        let result = await del(`users/${id}`);
+        resolve(result);
+    });
+};

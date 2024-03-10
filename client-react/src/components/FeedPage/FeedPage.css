@@ -26,10 +26,10 @@
 
 .img-profile-user {
   width: 60px;
+  height: 60px;
   object-fit: cover;
-  aspect-ratio: 1/1;
   border-radius: 50%;
-  border: 1px solid #000;
+  border: 1px solid #444;
   margin: 10px;
   margin-left: 20px;
 }
@@ -40,6 +40,19 @@
 
 #dark .icon{
   filter: invert(100%);
+}
+
+.user-name{
+  color:#808080
+  
+}
+
+.user-name:hover {
+  color:#0d6efd
+}
+
+.profile-info{
+  color:#808080
 }
 
 #dark .authorInfo,

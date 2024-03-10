@@ -179,60 +179,102 @@ const signIn = async(body) => {
     })
 }
 
-const getPosts = async (body) => {
-    return new Promise(async (resolve, reject) => {
-        try {
-            let result = await get('posts');
-            resolve(result);
-        } catch (error) {
-            reject(error);
-        }
-    });
-};
+const getPosts = async(body) => {
+    return new Promise(async (resolve,reject) => {
+        let  result = await get('posts');
+        resolve(result)
+    })
+}
 
-const createPost = async (id, body) => {
-    return new Promise(async (resolve, reject) => {
-        try {
-            let result = await post(`users/${id}/posts`, body);
-            resolve(result);
-        } catch (error) {
-            reject(error);
-        }
-    });
-};
+const createPost = async(id, body) => {
+    return new Promise(async (resolve,reject) => {
+        let  result = await post(`users/${id}/posts`,body);
+        resolve(result)
+    })
+}
+const updateUserPost = async(id, pid, body) => {
+    return new Promise(async (resolve,reject) => {
+        let  result = await put(`users/${id}/posts/${pid}`,body);
+        resolve(result)
+    })
+}
 
-const updateUserPost = async (id, pid, body) => {
-    return new Promise(async (resolve, reject) => {
-        try {
-            let result = await put(`users/${id}/posts/${pid}`, body);
-            resolve(result);
-        } catch (error) {
-            reject(error);
-        }
-    });
-};
+const deleteUserPost = async(id, pid) => {
+    return new Promise(async (resolve,reject) => {
+        let  result = await del(`users/${id}/posts/${pid}`);
+        resolve(result)
+    })
+}
 
-const updateUser = async (id, body) => {
-    return new Promise(async (resolve, reject) => {
-        try {
-            let result = await put(`users/${id}`, body);
-            resolve(result);
-        } catch (error) {
-            reject(error);
-        }
-    });
-};
+const updateUser = async(id,body) => {
+    return new Promise(async (resolve,reject) => {
+        let  result = await put(`users/${id}`,body);
+        resolve(result)
+    })
+}
 
-const getUser = async (id) => {
-    return new Promise(async (resolve, reject) => {
-        let result = await get(`users/${id}`);
-        resolve(result);
-    });
-};
+const getUser = async(id) => {
+    return new Promise(async (resolve,reject) => {
+        let  result = await get(`users/${id}`);
+        resolve(result)
+    })
+}
 
-const deleteUser = async (id) => {
-    return new Promise(async (resolve, reject) => {
-        let result = await del(`users/${id}`);
-        resolve(result);
-    });
-};
+const getUserPosts = async(id) => {
+    return new Promise(async (resolve,reject) => {
+        let  result = await get(`users/${id}/posts`);
+        resolve(result)
+    })
+}
+
+const getUserFriends = async(id) => {
+    return new Promise(async (resolve,reject) => {
+        let  result = await get(`users/${id}/friends`);
+        resolve(result)
+    })
+}
+
+const friendsRequest = async(id) => {
+    return new Promise(async (resolve,reject) => {
+        let  result = await post(`users/${id}/friends`,{});
+        resolve(result)
+    })
+}
+ const approveFriendsRequest = async(id,fid) =>{
+    return new Promise(async (resolve,reject) => {
+        let  result = await patch(`users/${id}/friends/${fid}`,{});
+        resolve(result)
+    })
+}
+
+ const deleteFriendsRequest = async(id,fid) =>{
+    return new Promise(async (resolve,reject) => {
+        let  result = await del(`users/${id}/friends/${fid}`,{});
+        resolve(result)
+    })
+} 
+
+const deleteUser = async(id) =>{
+    return new Promise(async (resolve,reject) => {
+        let  result = await del(`users/${id}`);
+        resolve(result)
+    })
+}
+
+
+export {
+    signUp,
+    signIn,
+    getPosts,
+    createPost,
+    updateUserPost,
+    deleteUserPost,
+    updateUser,
+    getUser,
+    getUserPosts,
+    getUserFriends,
+    friendsRequest,
+    approveFriendsRequest,
+    deleteFriendsRequest,
+    deleteUser
+}

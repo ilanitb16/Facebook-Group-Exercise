@@ -116,7 +116,9 @@ function FeedPage({ postList, setPostList, toggleTheme, currentUser}) {
       {isLoaded ?
         <div className="col-9 main-content">
           <Search doSearch={doSearch} />
-          <NewPost postList={postList} setPostList={setPostList} user_name={user_name} user_photo={user_photo} newPostInput={newPostInput} setNewPostInput={setNewPostInput}/>
+          {newPostInput && (
+            <NewPost postList={postList} setPostList={setPostList} user_name={user_name} user_photo={user_photo} newPostInput={newPostInput} setNewPostInput={setNewPostInput}/>
+          )}
           <PostListReslts posts={postList} postList={postList} setPostList={setPostList} user_name={user_name} user_photo={user_photo} friendsList={friendsList} setFriendsList={setFriendsList} />
           <div><label></label></div>
           <div><label></label></div>

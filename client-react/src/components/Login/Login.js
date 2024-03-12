@@ -35,7 +35,6 @@ const Login = ({ darkMode, toggleDarkMode }) => {
    // <div className={`login-container ${darkMode ? 'dark-mode' : ''}`}>
 
     <div className="login-container">
-      <h1 className='logo-text1'>facebook</h1>
       <div className="login-box">
         <h2 className="login-header">Log Into Facebook</h2>
         <form className="login-form">

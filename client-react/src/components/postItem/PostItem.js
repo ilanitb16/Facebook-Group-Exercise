@@ -18,16 +18,20 @@ function PostItem({
   create_date,
   profilePic,
   displayName,
+  likes,
+  comments,
   img,
   user_name,
   user_photo,
   friendsList,
   setFriendsList,
+  post
 }) {
   const [editMode, setEditMode] = useState(false);
   const [newTitle, setNewTitle] = useState(title);
   const [newDescription, setNewDescription] = useState(description);
   const [newImg, setNewImg] = useState(img);
+  const [imageName, setImageName] = useState("No file choosen");
   const params = useParams();
   // const [isFriendOrCurrentUser, setIsFriendOrCurrentUser] = useState(
   //   friendsList && (friendsList.includes(username) || username === user_name)
@@ -60,15 +64,19 @@ function PostItem({
     setNewTitle(title);
     setNewDescription(description);
     setNewImg(img);
+    setImageName("No file choosen")
   };
 
   const handleImageChange = (event) => {
     const file = event.target.files[0];
+    console.log(file)
     const reader = new FileReader();
     reader.onloadend = () => {
+      console.log(reader.result)
       setNewImg(reader.result);
     };
-    if (file) {
+    if(file) {
+      setImageName(file.name)
       reader.readAsDataURL(file);
     }
   };
@@ -142,6 +150,7 @@ function PostItem({
                   setEditMode={setEditMode}
                   deleteChanges={deleteChanges}
                   username={user_name}
+                  
                   />
                 </div>
                 </div>
@@ -149,23 +158,8 @@ function PostItem({
               }
             </p>
           </div>
-          {/* {isAuthUser() && (
-            <div className="edit-area">
-              <EditPost
-              _id = {_id}
-              title={title}
-              postList={postList}
-              setPostList={setPostList}
-              editMode={editMode}
-              setEditMode={setEditMode}
-              deleteChanges={deleteChanges}
-              username={user_name}
-              />
-            </div>
-          )}
-           */}
         </div>
-        <img className="card-img" src={img} alt="..."></img>
+        <div className="line"></div>   
         <div className="card-body">
           {!editMode && (
             <div>
@@ -175,51 +169,50 @@ function PostItem({
           )}
           {editMode && (
             <div className="editPost">
-              <label>Title:</label>
+              <label className="edit-label">Title:</label>
               <input
+                className="edit-input"
                 type="text"
                 value={newTitle}
                 onChange={(e) => setNewTitle(e.target.value)}
               />
               <br />
               <div className="description">
-                <label>Description:</label>
+                <label className="edit-label">Description:</label>
                 <textarea
+                  className="edit-desc"
                   rows="1"
                   value={newDescription}
-                  style={{ width: "60%" }}
                   onChange={(e) => setNewDescription(e.target.value)}
                 ></textarea>
               </div>
               <div className="editImg">
-                <br />
-                <label></label>
-                <br />
-                <i className="bi bi-plus-circle-fill"></i>
-                <input type="file" onChange={handleImageChange} />
+                <label for="file-upload" className="edit-image-input">
+                    Choose File
+                </label>
+                <span className="edit-img-title">{imageName}</span>
+                <input id="file-upload" type="file" onChange={handleImageChange} />
+              </div>
+              <div className="editButtons">
+                <button key="update" className="edit-btn update" onClick={updatePost} >
+                  Update
+                </button>
+                <button
+                  key="cancel"
+                  onClick={() => {
+                    deleteChanges();
+                    setEditMode(false);
+                  }}
+                  className="edit-btn delete"
+                >
+                  Cancel
+                </button>
               </div>
             </div>
           )}
         </div>
-        <Social user_name={user_name} user_photo={user_photo} />
-        {editMode && (
-          <div className="editButtons">
-            <button key="update" onClick={updatePost} className="fs-6">
-              Update
-            </button>
-            <button
-              key="cancel"
-              onClick={() => {
-                deleteChanges();
-                setEditMode(false);
-              }}
-              className="fs-6"
-            >
-              Cancel
-            </button>
-          </div>
-        )}
-        
+        <img className="card-img" src={img} alt="..."></img>
+        <Social user_name={user_name} user_photo={user_photo} post={post} postList = {postList} setPostList = {setPostList} />
       </div>
       </div>
      

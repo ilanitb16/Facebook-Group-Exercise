@@ -11,5 +11,8 @@ module.exports = class PostReq{
         this.profilePic = request.body.profilePic;
         this.create_date = request.body.create_date;
         this.img = request.body.img;
+        this.displayName = request.body.displayName;
+        this.comments = request.body.comments;
+        this.likes = request.body.likes
     }
 }

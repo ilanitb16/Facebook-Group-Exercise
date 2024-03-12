@@ -179,7 +179,7 @@ const signIn = async(body) => {
     })
 }
 
-const getPosts = async(body) => {
+const getPosts = async() => {
     return new Promise(async (resolve,reject) => {
         let  result = await get('posts');
         resolve(result)

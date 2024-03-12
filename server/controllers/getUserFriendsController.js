@@ -15,7 +15,7 @@ module.exports.getUserFriendsController = async (request, response, next) => {
             let dbResponseAuthUser = await request.db.collection("users").findOne({username: decodedUser.username });
             authUser.friends = dbResponseAuthUser.friends ? dbResponseAuthUser.friends : [];
 
-            if(authUser.username === username || authUser.friends.includes(username)){
+            if(authUser.username === username || authUser.friends.some((friend) => friend.username === username)){
                 let dbResult = await request.db.collection("users").findOne({username: username});
                 result = {status:200, result: {username: dbResult.username, displayName:dbResult.displayName, friends: dbResult.friends}};
             }

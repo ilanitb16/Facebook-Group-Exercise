@@ -73,6 +73,21 @@
     color:#0A58CA;
     font-size: 16px;
 }
+.line{
+    width: 95%;
+    margin:0 auto;
+    height: 1px;
+    background-color:#ccc ;
+}
+
+.bottom{
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.card-body{
+    
+}
 
 .card-author{
     margin-bottom:22px
@@ -95,12 +110,80 @@
 
 .bi-friend{
     margin-left:30px;
-    color:#0A58CA
+    color:#0A58CA;
+    cursor: pointer;
 }
 
 .display-name{
-    color:#0A58CA
+    color:#0A58CA;
 }
+
+.edit-label{
+    width: 110px;
+    font-size: 14px;
+    font-weight: bold;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.edit-input{
+    width: 500px;
+    padding:7px;
+    border:none;
+    border: 0.5px solid #ccc;
+    border-radius: 7px;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.edit-desc{
+    width: 500px;
+    padding:7px;
+    display: inline-block;
+    vertical-align: middle;
+    border: 0.5px solid #ccc;
+    border-radius: 7px 
+}
+.description{
+    margin-top:25px
+}
+.editImg{
+    margin-top:45px
+}
+.edit-image-input{
+    padding: 4px 16px;
+    border: none;
+    border-radius: 20px;
+    background-color: #1877f2;
+    color: #fff;
+    cursor: pointer;
+    outline: none;
+}
+
+.editButtons{
+    margin-top:30px
+}
+
+.edit-btn{
+    padding: 4px 16px;
+    margin-right: 15px;
+    border: none;
+    border-radius: 20px;
+    background-color: #1877f2;
+    color: #fff;
+    cursor: pointer;
+    outline: none;
+
+}
+
+input[type="file"]{
+    display: none;
+}
+
+.edit-img-title{
+    margin-left:15px
+}
+
 /*
 .card-img {
     max-width: 500px; 

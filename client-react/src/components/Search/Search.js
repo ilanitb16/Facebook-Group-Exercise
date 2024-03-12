@@ -13,15 +13,15 @@ function Search({ doSearch}) {
     <div className="col-3">
         <label></label>
       </div>
-    <div className="col-9 main-content">
+    <div className="main-content search-row">
       <div className="search col-5">
         <div className="searchLine input-group mb-3 p-2">
           <input
             ref={searchBox}
             onKeyUp={search}
             type="text"
-            className="form-control"
-            placeholder="Search Facebook"
+            className="form-control txt-input"
+            placeholder="Search post"
             label="Search"
             aria-describedby="button-addon2"
           ></input>
@@ -29,6 +29,7 @@ function Search({ doSearch}) {
             className="btn btn-outline-secondary"
             type="button"
             id="button-addon2"
+            onClick={search}
           >
             <i className="bi bi-search me-3"></i>
           </button>

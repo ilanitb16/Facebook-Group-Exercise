@@ -7,6 +7,7 @@ import './Registration.css'; // Import the CSS file for registration styles
 function Registration() {
     const navigate = useNavigate();
     const [imageBase64, setImageBase64] = useState();
+    const [registrationImageName, setRegistrationImageName] = useState("No file choosen");
   
     // a state var used to store data entered by user. 
     const [formData, setFormData] = useState({
@@ -38,7 +39,7 @@ function Registration() {
     const selectFile = (e) => {
       const fileReader = new FileReader();
       fileReader.readAsDataURL(e.target.files[0]);
-
+      setRegistrationImageName(e.target.files[0].name)
       fileReader.onload = () => {
         //console.log("aaa", fileReader.result);
         setImageBase64(fileReader.result);
@@ -178,15 +179,14 @@ function Registration() {
 
         <form onSubmit={handleSubmit}>
           <div className="form-group">
-            <div style={{marginTop:'15px',display: 'flex'}} className="form-group">
-              
-              <label></label>
-              <input
-                type="file"
-                name="profilePic"
-                accept="image/*" 
-                onChange={selectFile}
-              />
+            <div style={{marginTop:'15px',display: 'flex',justifyContent:'space-between', width:'100%'}} className="form-group">
+              <div className="editImg" style={{textAlign: 'left', width:'100%',marginTop: "20px"}}>
+                <label for="file-reg-upload" className="edit-image-input">
+                    Choose File
+                </label>
+                <span className="edit-img-title">{registrationImageName}</span>
+                <input id="file-reg-upload" type="file" name="profilePic" accept="image/*"  onChange={selectFile} />
+              </div>
               <div>
               <img src={imageBase64} className="avatar" />
             </div>
@@ -250,7 +250,7 @@ function Registration() {
             />
           </div>
 
-          <button className='registration-button' type="register">sign up</button>
+          <button className='registration-button' type="register">Sign up</button>
 
           <p className="login-footer">
               <a href="/login">Already have an account?</a>  

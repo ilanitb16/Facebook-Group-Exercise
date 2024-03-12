@@ -31,6 +31,18 @@ module.exports.updatePostController = async (request, response, next) => {
         if(postRequest.create_date){
             post.create_date = postRequest.create_date
         }
+
+        if(postRequest.displayName){
+            post.displayName = postRequest.displayName
+        }
+    
+        if(postRequest.comments){
+            post.comments = postRequest.comments
+        }
+    
+        if(postRequest.likes){
+            post.likes = postRequest.likes
+        }
         
         post.update_date = new Date().toISOString()
 

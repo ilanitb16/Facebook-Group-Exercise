@@ -1,17 +1,38 @@
 import React, { useState } from "react";
+import { createPost } from '../../GeneralFunctions.js';
+import { getPosts, getUserPosts } from '../../GeneralFunctions.js';
+import { useParams } from 'react-router-dom';
+import { useUser } from '../../providers/user_context';
 import './NewPost.css';
 
 function NewPost({
-  user_name,
-  user_photo,
   postList,
   setPostList,
+  user_name,
+  user_photo,
   newPostInput,
   setNewPostInput,
 }) {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [imgNewPost, setImgNewPost] = useState(null);
+  const params = useParams();
+  const [user, setUser] = useUser();
+  const [updateImageName, setUpdateImageName] = useState("No file choosen");
+
+  const getPostslist = async() => {
+    return new Promise(async (resolve, reject) => {
+      let list;
+      if(params && params.id){
+        list = await getUserPosts(params.id);
+      }
+      else{
+        list = await getPosts();
+      } 
+      resolve(list)
+    })
+    
+  }
 
   const handleTitleChange = (event) => {
     setTitle(event.target.value);
@@ -22,27 +43,43 @@ function NewPost({
   };
 
   const handleImageChange = (event) => {
-    setImgNewPost(event.target.files[0]);
+    const fileReader = new FileReader();
+    let file=event.target.files[0];
+    fileReader.readAsDataURL(event.target.files[0]);
+    fileReader.onload = () => {
+      //console.log("aaa", fileReader.result);
+      setImgNewPost(fileReader.result);
+      setUpdateImageName(file.name)
+    };
   };
 
-  const currentDate = new Date();
-  const formattedDate = `${currentDate.getDate()}/${
-    currentDate.getMonth() + 1
-  }/${currentDate.getFullYear()}`;
+  // const currentDate = new Date();
+  // const formattedDate = `${currentDate.getDate()}/${
+  //   currentDate.getMonth() + 1
+  // }/${currentDate.getFullYear()}`;
 
-  const addPost = () => {
-    const img = imgNewPost ? URL.createObjectURL(imgNewPost) : null;
+  const addPost = async () => {
+    // Check if an image is selected
+    const img = imgNewPost ? imgNewPost : null;
 
     const newPost = {
       title: title,
-      author: user_name,
+      username: user_name,
       description: description,
-      date: formattedDate,
-      author_photo: user_photo,
+      profilePic: user_photo,
       img: img,
+      likes:[],
+      comments:[]
     };
-
-    setPostList([...postList, newPost]);
+    if(user){
+      newPost.displayName = user.displayName
+    }
+    let result = await createPost(user_name,newPost);
+    if(result && result.insertedId){
+      alert( "Post was successfully created.");
+      let list = await getPostslist();
+      setPostList(list);
+    }
     deleteData();
   };
 
@@ -50,15 +87,15 @@ function NewPost({
     setTitle("");
     setDescription("");
     setImgNewPost(null);
+    setUpdateImageName("No file choosen")
   };
 
-  const handleScrollToTop = () => {
+  const handleScrollToBottom = () => {
     window.scrollTo({
-      top: 0,
+      top: document.body.scrollHeight,
       behavior: "smooth",
     });
   };
-
 
   return (
     <div className="row post">
@@ -70,16 +107,16 @@ function NewPost({
               <p className="newPostContent">
                 <label className="post-title">Create Post</label>
                 <br />
-                <label></label>
                 <br />
+                <h3 className="display-pic">
+                    <img src={user_photo} className="img-profile-user" alt="..." />
+                    <b className="user-name">{"@" + user.displayName}</b>
+                </h3>   
                 <input placeholder="Title" type="text" value={title} onChange={handleTitleChange} />
                 <br />
                 <label></label>
                 <br />
-                <h3 className="display-pic">
-                    <img src={user_photo} className="img-profile-user" alt="..." />
-                    <b className="user-name">{"@" + user_name}</b>
-                </h3>                
+                             
               <textarea
                   placeholder={`What's on your mind, ${user_name}?`}
                   rows="4"
@@ -87,10 +124,13 @@ function NewPost({
                   value={description}
                   onChange={handleDescriptionChange}
                 ></textarea>
-                <br />
-                <label></label>
-                <br />
-                <input type="file" onChange={handleImageChange} />
+                <div className="editImg">
+                  <label for="file-edit-upload" className="edit-image-input">
+                      Choose File
+                  </label>
+                  <span className="edit-img-title">{updateImageName}</span>
+                <input id="file-edit-upload" type="file" onChange={handleImageChange} />
+                </div>
                 </p>
                 <div className="newPostButtons btn-group" role="group" aria-label="Basic example">
                   <button
@@ -99,17 +139,17 @@ function NewPost({
                     onClick={() => {
                       addPost();
                       setNewPostInput(false);
-                      handleScrollToTop();
+                      // handleScrollToBottom();
                     }}
                   >
-                    post
+                    Post
                   </button>
                   <button
                     type="button"
                     className="btn btn-primary"
                     onClick={() => setNewPostInput(false)}
                   >
-                    discard
+                    Discard
                   </button>
                   <button
                     type="button"
@@ -119,7 +159,7 @@ function NewPost({
                       deleteData();
                     }}
                   >
-                    cancel
+                    Cancel
                   </button>
                 </div>
             </div>

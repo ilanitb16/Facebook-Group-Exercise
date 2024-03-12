@@ -20,12 +20,11 @@ function FeedPage({ postList, setPostList, toggleTheme, currentUser}) {
   const params = useParams();
   const [friendsList, setFriendsList] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false);
-
+  
   const getPostslist = async() => {
     return new Promise(async (resolve, reject) => {
       let list;
       if(params && params.id){
-        console.log("PARAMS", params.id)
         list = await getUserPosts(params.id);
       }
       else{
@@ -56,24 +55,22 @@ function FeedPage({ postList, setPostList, toggleTheme, currentUser}) {
   let user_photo = user?.profilePic;
 
   useEffect(() => {
-    setIsLoaded(false);
-    if((params && params.id && params.id !== user.username) || !params.id){
+    if((user && params && params.id && params.id !== user.username) || !params.id){
        setNewPostInput(false)
     }
-    
     const initPostlist = async() => {
-      let list = await getPostslist();
       setIsLoaded(true);
+      let list = await getPostslist();
       if(list && list.length == 0){
-        alert ("You are not friends");
-        setIsLoaded(false);
+        alert ("There are no suitable posts");
       }
       setPostList(list);
+      setIsLoaded(false);
     }
 
     const initFriendslist = async(user) => {
       let list = await getUserFriends(user.username)
-      if(list)
+      if(list && list.friends)
         setFriendsList(list.friends);
     }
 
@@ -101,6 +98,7 @@ function FeedPage({ postList, setPostList, toggleTheme, currentUser}) {
         initPostlist();
         initFriendslist(user)
       }
+     
     }
 
     initData()
@@ -113,7 +111,7 @@ function FeedPage({ postList, setPostList, toggleTheme, currentUser}) {
   return (
     <React.Fragment>
       <Menu toggleTheme={toggleTheme} setNewPostInput={setNewPostInput} friendsList={friendsList} setFriendsList={setFriendsList} />
-      {isLoaded ?
+      {!isLoaded ? 
         <div className="col-9 main-content">
           <Search doSearch={doSearch} />
           {newPostInput && (
@@ -124,7 +122,7 @@ function FeedPage({ postList, setPostList, toggleTheme, currentUser}) {
           <div><label></label></div>
           <div><label></label></div>
         </div>
-        : 
+        :
         <Loader/>
       }
       {user &&

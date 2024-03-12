@@ -79,6 +79,6 @@
   filter: invert(5%);
 }
 
-.info-container{
-
+.top{
+  min-height: calc(100vh - 60px);
 }

@@ -33,7 +33,7 @@ module.exports.getUserPostsController = async (request, response, next) => {
             }
             let user = await request.db.collection("users").findOne({username: username });
             if(user && user.friends){
-                friend = user.friends.find(friend => friend == authUser.username);
+                friend = user.friends.find(friend => friend.username == authUser.username);
                 if(friend){
                     let filter = {$match:{username: username }};
                     query = [

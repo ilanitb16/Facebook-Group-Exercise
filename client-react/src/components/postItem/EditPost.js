@@ -1,9 +1,11 @@
 import "./PostItem.css";
 import React, { useState, useRef } from "react";
+import { deleteUserPost, getPosts,getUserPosts } from '../../GeneralFunctions.js'
+import { useParams } from 'react-router-dom';
 
-function EditPost({ title, postList, setPostList, editMode, setEditMode, deleteChanges }) {
+function EditPost({ _id, title, postList, setPostList, editMode, setEditMode, deleteChanges, user_name }) {
   const [open, setOpen] = useState(false);
-
+  const params = useParams();
   const menuRef = useRef();
   const iconRef = useRef();
 
@@ -13,17 +15,31 @@ function EditPost({ title, postList, setPostList, editMode, setEditMode, deleteC
     }
   });
 
-  const removePost = () => {
-    const updatedPosts = postList.filter((post) => post.title !== title);
-
-    console.log(updatedPosts)
-    setPostList(updatedPosts);
-
+  const getPostslist = async() => {
+    return new Promise(async (resolve, reject) => {
+      let list;
+      if(params && params.id){
+        list = await getUserPosts(params.id);
+      }
+      else{
+        list = await getPosts();
+      } 
+      resolve(list)
+    })
+    
+  } 
+  
+  
+  const removePost = async () => {
+    await deleteUserPost(user_name, _id)
+    let list = await getPostslist();
+    setPostList(list);
   };
-
+  
   return (
-    <div className="threeDots col-3 d-flex justify-content-end align-items-center">
-      <div className="w-90 text-end">
+    <div>
+    <div className="threeDots">
+      <div className="">
         <i
           className="threeDots-item bi bi-three-dots-vertical"
           style={{ fontSize: "1.6rem" }}
@@ -34,22 +50,24 @@ function EditPost({ title, postList, setPostList, editMode, setEditMode, deleteC
             }
           }}
         >
-          {open && (
-            <div ref={menuRef} className="threeDots-item absolute-left">
-              <ul style={{ listStyleType: "none", padding: 0 }}>
-                {!editMode && (
-                  <li key="edit" onClick={() => {setEditMode(true); deleteChanges();}} className="fs-6">
-                    <i className="bi bi-sliders"></i> Edit
-                  </li>
-                )}
-                <li key="delete" onClick={() => {removePost();}} className="fs-6">
-                  <i className="bi bi-trash3"></i> Delete
-                </li>
-              </ul>
-            </div>
-          )}
+          
         </i>
       </div>
+    </div>
+    {open && (
+      <div ref={menuRef} className="threeDots-item absolute-left">
+        <ul style={{ listStyleType: "none", padding: 0, margin:0 }}>
+          {!editMode && (
+            <li key="edit" onClick={() => {setEditMode(true); deleteChanges();}} className="edit">
+              <i className="bi bi-sliders"></i> Edit
+            </li>
+          )}
+          <li key="delete" onClick={() => {removePost();}} className="delete">
+            <i className="bi bi-trash3"></i> Delete
+          </li>
+        </ul>
+      </div>
+    )}
     </div>
   );
 }

@@ -1,53 +1,52 @@
+import "./Social.css";
 import React, { useState } from "react";
 import Share from "./Share";
 import Comment from "./Comment";
 
-function Social({ user_name, user_photo }) {
-  const [likePressed, setLikePressed] = useState(false);
+
+
+function Social({user_name, user_photo}) {
+  
+  const [likePressed, setLlikePressed] = useState(false);
   const [commentPressed, setCommentPressed] = useState(false);
-  const [likesCount, setLikesCount] = useState(0);
 
   const handleClickLike = () => {
-    setLikePressed((prevLikePressed) => !prevLikePressed);
-    setLikesCount((prevLikesCount) => (likePressed ? prevLikesCount - 1 : prevLikesCount + 1));
+    setLlikePressed((pressed) => !pressed);
   };
 
   const handleClickComment = () => {
-    setCommentPressed((prevCommentPressed) => !prevCommentPressed);
+    setCommentPressed((pressed) => !pressed);
   };
 
+
   return (
-    <div className="social-container">
+    <div>
       <div className="icon social">
-        <span className="likeButton" onClick={handleClickLike}>
-        <span className="likeCount">{likesCount}</span>
+        <span className="likeButton">
           <i
             className={`bi bi-hand-thumbs-up${likePressed ? "-fill" : ""}`}
             style={{ fontSize: "2rem", cursor: "pointer" }}
+            onClick={handleClickLike}
           ></i>
         </span>
         <span
-          className="commentButton"
-          onClick={() => {
-            setCommentPressed((prevCommentPressed) => !prevCommentPressed);
-          }}
-        >
-          <i
-            className={`bi bi-chat${commentPressed ? "-fill" : ""}`}
-            style={{ fontSize: "2rem", cursor: "pointer" }}
-          ></i>
-        </span>
+        className="commentButton"
+        onClick={() => {
+          setCommentPressed(!commentPressed);
+        }}
+      >
+        <i
+          className={`bi bi-chat${commentPressed ? "-fill" : ""}`}
+          style={{ fontSize: "2rem", cursor: "pointer" }}
+          onClick={handleClickComment}
+        ></i>
+      </span>
         <Share />
       </div>
       <div className="commentSection">
-        <Comment
-          commentPressed={commentPressed}
-          user_name={user_name}
-          user_photo={user_photo}
-        />
+      <Comment commentPressed={commentPressed} user_name={user_name} user_photo={user_photo} />
       </div>
     </div>
   );
 }
-
 export default Social;

@@ -37,10 +37,6 @@ To start the web application, navigate to the server directory and run:
 ```
 Node index.js
 ```
-then run the following command in the project directory:
-```
-npm start
-```
 This command will start a development server, and the application will be accessible at `http://localhost:3000` by default.
 
 ## Usage

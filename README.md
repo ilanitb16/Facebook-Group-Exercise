@@ -38,6 +38,7 @@ To start the web application, navigate to the server directory and run:
 Node index.js
 ```
 This command will start a development server, and the application will be accessible at `http://localhost:3000` by default.
+NOTE: If you made any modifications in our project, to access the app on the server, you must run npm run build in the client-react directory first, then copy it's content into public folder in the client-react directory and then run node.js server as described above. 
 
 ## Usage
 Once the application is running, you can access it via a web browser by navigating to `http://localhost:3000`. From there, you can register as a new user, log in with existing credentials, view your feed, post new content, manage friends, and perform other actions as described in the features section.

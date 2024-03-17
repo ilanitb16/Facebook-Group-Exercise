@@ -126,7 +126,7 @@ function PostItem({
                     <i className="addFriend bi bi-person-fill-add bi-friend" style={{ fontSize: "1.6rem" }} onClick={handleFriendRequest}></i>
                   </span>
                 </div>
-                <span>{" " + getDate()}</span>
+                <span className="item-date">{" " + getDate()}</span>
               </div>
               : 
               <div className="flex-display">

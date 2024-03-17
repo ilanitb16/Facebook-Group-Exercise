@@ -65,6 +65,9 @@
 #dark .editPost,
 #dark .editButtons,
 #dark .comment-input,
+#dark .main-layout,
+#dark .friend-name,
+#dark .item-date,
 #dark .userInfoComment {
   filter: invert(100%);
 }

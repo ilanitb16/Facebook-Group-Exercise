@@ -19,11 +19,13 @@ module.exports.generateGuid = () => {
 }
 
 module.exports.ok = (response, result) => {
-    if(!result.error){
-        response.status(result.status).send(result.result);
+    if(result.error){
+		response.status(500).send(result.result);
     }
     else{
-        response.status(500).send(result.result);
+		console.log("RESPONSE BODY:", result.result);
+		response.type('application/json');
+        response.status(result.status).send(result.result);
     }
 }
 

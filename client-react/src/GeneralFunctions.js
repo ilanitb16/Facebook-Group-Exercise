@@ -26,6 +26,10 @@ const  post = (url, body) =>{
         
         let request = new Request(baseUrl + url,{method:'POST', headers: headers, body:JSON.stringify(body)});
         fetch(request).then(async(response)=>{
+            if(response.status == 404){
+                console.log(response)
+                throw {status:response.status, message:response.statusText}
+            }
             result = await response.json();
             if(response.ok){
                 resolve (result)
@@ -84,15 +88,22 @@ const  get = (url) =>{
 
     return new Promise((resolve,reject) =>{
         let request = new Request(baseUrl + url,{method:'GET', headers: headers});
-        fetch(request).then(async(response)=>{
+        fetch(request).then(async(response)=>{console.log(response)
+            if(response.status == 404){
+                console.log(response)
+                throw {status:response.status, message:response.statusText}
+            }
             result = await response.json();
             if(response.ok){
                 resolve (result)
             }
-            else
+            else{
+               
                 throw result
+            }
         })
         .catch( err =>{
+            console.log(err)
             alert(err.message)
             
         })

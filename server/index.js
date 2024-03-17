@@ -12,6 +12,7 @@ const postsRoutes = require("./routes/postsRoutes");
 
 const app = express();
 
+
 app.use(bodyParser.json({limit: '50mb'}));
 app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
 app.use(express.json({limit: '50mb'}));
@@ -24,6 +25,7 @@ app.use(mongodbInjector);
 app.use("/api", accountRoutes);
 app.use("/api", friendsRoutes);
 app.use("/api", postsRoutes);
+app.use(express.static('public'));
 
 app.listen(3000, () => {
     console.info(`Node.js app is listening at http://localhost:3000`);

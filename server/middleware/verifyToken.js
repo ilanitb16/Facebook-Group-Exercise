@@ -6,7 +6,7 @@ const privateKey = 'privateKey';
 module.exports.verifyToken = (request, response, next) => {
     let url = request.url;
 	
-    if(url.indexOf("/api") < 0 || notProtectedRoutes.includes(url)) {
+    if(url.indexOf("/api") < 0 || url.indexOf('/api/posts/image/') >= 0  || url.indexOf('/api/users/image/') >= 0 || notProtectedRoutes.includes(url)) {
         next();
         return;
     };

@@ -12,7 +12,6 @@ module.exports.userImageController = async (request, response, next) => {
 			let imageBase64 = user.profilePic.substring(index + 7);
 			let contentType = user.profilePic.substring(5, user.profilePic.indexOf(";"));
 
-			console.log(contentType);
 
 			let image = Buffer.from(imageBase64, 'base64');
 			

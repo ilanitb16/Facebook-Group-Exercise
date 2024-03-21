@@ -69,10 +69,8 @@ function PostItem({
 
   const handleImageChange = (event) => {
     const file = event.target.files[0];
-    console.log(file)
     const reader = new FileReader();
     reader.onloadend = () => {
-      console.log(reader.result)
       setNewImg(reader.result);
     };
     if(file) {

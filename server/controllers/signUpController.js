@@ -10,7 +10,7 @@ module.exports.signUpController = async (request, response, next) => {
     
     if(signupRequest.username){
         let searchedUser = await request.db.collection("users").findOne({username: signupRequest.username});
-        console.log("searchedUser", searchedUser)
+       
         if(searchedUser){
             result.status = 409;
             result.result = {message:"User name already exsists"}

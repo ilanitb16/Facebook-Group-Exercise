@@ -13,7 +13,6 @@ module.exports.postImageController = async (request, response, next) => {
 			let imageBase64 = post.img.substring(index + 7);
 			let contentType = post.img.substring(5, post.img.indexOf(";"));
 
-			console.log(contentType);
 
 			let image = Buffer.from(imageBase64, 'base64');
 			

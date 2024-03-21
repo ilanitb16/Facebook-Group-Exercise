@@ -23,7 +23,6 @@ module.exports.ok = (response, result) => {
 		response.status(500).send(result.result);
     }
     else{
-		console.log("RESPONSE BODY:", result.result);
 		response.type('application/json');
         response.status(result.status).send(result.result);
     }

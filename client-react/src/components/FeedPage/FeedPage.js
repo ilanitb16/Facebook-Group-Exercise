@@ -62,8 +62,10 @@ function FeedPage({ postList, setPostList, toggleTheme, currentUser}) {
       setIsLoaded(true);
       let list = await getPostslist();
       if(list && list.length == 0){
-        alert ("There are no suitable posts");
-      }
+        setIsLoaded(false);
+        if(params.id !== user?.username)
+          alert ("There are no suitable posts");
+      }
       setPostList(list);
       setIsLoaded(false);
     }

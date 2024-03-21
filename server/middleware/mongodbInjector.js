@@ -1,6 +1,6 @@
 const { mongo } = require("../utils");
-
-let db = mongo(process.env.USER, process.env.PASS);
+console.log("USER", process.env.MONGODB_USER);
+let db = mongo(process.env.MONGODB_USER, process.env.MONGODB_PASS);
 
 module.exports.mongodbInjector = (request, response, next) => {
     request.db = db;

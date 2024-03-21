@@ -1,8 +1,8 @@
 const MongoClient = require('mongodb').MongoClient;
 
-
 module.exports.mongo = (user, pass) => {
     const MONGODB_CONNECTION = `mongodb+srv://${user}:${pass}@cluster0.cs944.gcp.mongodb.net/?retryWrites=true&w=majority`
+    console.log("CONNECTION:", MONGODB_CONNECTION)
     return new MongoClient(MONGODB_CONNECTION).db("barilan");
 }
 

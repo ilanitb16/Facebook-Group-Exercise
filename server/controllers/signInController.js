@@ -9,8 +9,10 @@ module.exports.signInController = async (request, response, next) => {
     
     try{
         let signinRequest = new SigninRequest(request);
+        console.log(signinRequest);
         let searchedUser = await request.db.collection("users").findOne({username: signinRequest.user, password: signinRequest.pass});
 
+        console.log("user: ", signinRequest, searchedUser);
         if(searchedUser){
             token = jwt.sign(request.body, privateKey, {
                 expiresIn: '400d',

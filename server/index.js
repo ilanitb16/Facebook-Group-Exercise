@@ -25,7 +25,6 @@ app.use(mongodbInjector);
 function communicateWithTCPServer(data) {
     return new Promise((resolve, reject) => {
         const client = net.createConnection({ port: 7979, host: '192.168.31.128' }, () => {
-            console.log('Connected to TCP server');
             client.write(data);
         });
 
@@ -37,7 +36,6 @@ function communicateWithTCPServer(data) {
         });
 
         client.on('end', () => {
-            console.log('Disconnected from TCP server');
         });
 
         client.on('error', (err) => {
@@ -50,10 +48,9 @@ function communicateWithTCPServer(data) {
 
 
 // Function to setup the server
-// Function to setup the server
 async function setupServer() {
     try {
-        // Establish connection with TCP server
+        //the setting of the bits array
         const response = await communicateWithTCPServer("16 1 2");
         console.log(response);
 
@@ -67,13 +64,16 @@ async function setupServer() {
 
         for (let line of lines) {
             const isFirstBitOne = await communicateWithTCPServer(`1 ${line}`);
-            console.log(`Is first bit one for "${line}":`, isFirstBitOne);
+            console.log(`"${line}":`, isFirstBitOne);
         }
-
         console.log("Server setup completed successfully.");
+
+
+
+
     } catch (error) {
         console.error("Error setting up server:", error);
-        process.exit(1); // Terminate the application if setup fails
+        process.exit(1);
     }
 }
 
@@ -91,7 +91,7 @@ async function startServer() {
         });
     } catch (error) {
         console.error("Error starting server:", error);
-        process.exit(1); // Terminate the application if setup fails
+        process.exit(1);
     }
 }
 

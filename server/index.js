@@ -32,7 +32,8 @@ function communicateWithTCPServer(data) {
         client.on('data', (response) => {
             console.log('Received from TCP server:', response.toString());
             client.end();
-            resolve(response.toString());
+            const firstBit = response.readUInt8(0); // Get the first bit as a number
+            resolve(firstBit === 1); // Resolve with true if first bit is 1, false otherwise
         });
 
         client.on('end', () => {
@@ -47,6 +48,8 @@ function communicateWithTCPServer(data) {
 }
 
 
+
+// Function to setup the server
 // Function to setup the server
 async function setupServer() {
     try {
@@ -63,8 +66,8 @@ async function setupServer() {
         ];
 
         for (let line of lines) {
-            const response = await communicateWithTCPServer(`1 ${line}`);
-            console.log(response);            
+            const isFirstBitOne = await communicateWithTCPServer(`1 ${line}`);
+            console.log(`Is first bit one for "${line}":`, isFirstBitOne);
         }
 
         console.log("Server setup completed successfully.");

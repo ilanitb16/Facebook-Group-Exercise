@@ -22,6 +22,7 @@ app.use(cors({ origin: true }));
 app.use(verifyToken);
 app.use(mongodbInjector);
 
+// Function to communicate with the TCP server
 function communicateWithTCPServer(data) {
     return new Promise((resolve, reject) => {
         const client = net.createConnection({ port: 7979, host: '192.168.31.128' }, () => {
@@ -67,9 +68,6 @@ async function setupServer() {
             console.log(`"${line}":`, isFirstBitOne);
         }
         console.log("Server setup completed successfully.");
-
-
-
 
     } catch (error) {
         console.error("Error setting up server:", error);

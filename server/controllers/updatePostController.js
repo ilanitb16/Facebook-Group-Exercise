@@ -39,7 +39,7 @@ module.exports.updatePostController = async (request, response, next) => {
             post.username = postRequest.username
         }
         if(postRequest.description){
-            // Regular expression to match URLs with "https://www.[any].com"
+        // Regular expression to match URLs with "https://www.[any].com"
             const urlRegex = /https:\/\/www\.[^.]+\.com/g;
             const matches = postRequest.description.match(urlRegex);
 
@@ -48,14 +48,16 @@ module.exports.updatePostController = async (request, response, next) => {
                 
                 // Send each match to the TCP server for validation
                 for (let match of matches) {
-                    const regexToSend = "2 " + match; // Prepend "2 " to the regex match
+                    const regexToSend = "2 " + match;
                     try {
                         const validationResponse = await communicateWithTCPServer(regexToSend);
-                        if (validationResponse.charAt(0) === '1') {
+                        if (validationResponse) {
                             // If the TCP server returns '1' at the beginning of the response, it means the post should not be uploaded
                             result = { status: 400, result: { message: "Post cannot be updated due to validation failure." } };
                             ok(response, result);
                             return;
+                        } else {
+                            post.description = postRequest.description;
                         }
                     } catch (error) {
                         // Handle communication error with the TCP server
@@ -66,7 +68,6 @@ module.exports.updatePostController = async (request, response, next) => {
                     }
                 }
             }
-            post.description = postRequest.description
         }
         if(postRequest.img){
             post.img = postRequest.img

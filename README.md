@@ -15,6 +15,15 @@ This web application is part of the larger exercise to develop a full-fledged so
 Before setting up the web application, ensure you have the following prerequisites:
 - Node.js installed on your machine
 - A compatible web browser (e.g., Chrome, Firefox, Safari)
+- Create an .env file in the server directory and add the following code:
+  ```
+  MONGODB_USER="barilan"
+  MONGODB_PASS="Iia8RPyuqVVT5YZo"
+  ```
+I realised it was missing from github after the due date, for some reason it was not added during the commits. Here is the picture of the structure. Very sorry for the inconvenience.
+
+![image](https://github.com/ilanitb16/facebook-ex2/assets/97344492/920e3325-c5e5-4afb-8072-33f1e0454274)
+
 
 ## Installation
 1.	Clone the repository to your local machine:
@@ -84,6 +93,12 @@ A page full of posts only the current user posted. Is accessible by pressing the
   ### New Post
   ![image](https://github.com/ilanitb16/facebook-ex2/assets/97344492/73b70179-23e8-4974-b4c2-545c907d26cd)
 
+  ### Edit Post
+  ![WhatsApp Image 2024-04-29 at 11 38 41_48cd74bf](https://github.com/ilanitb16/facebook-ex2/assets/97344492/2502200d-388f-4ce2-b0b2-bdededa28645)
+  ![WhatsApp Image 2024-04-29 at 11 39 09_d1af1bcf](https://github.com/ilanitb16/facebook-ex2/assets/97344492/43aa26dd-bc7a-47bf-ba08-4b4770bde86a)
+  ![WhatsApp Image 2024-04-29 at 11 39 21_fa81a449](https://github.com/ilanitb16/facebook-ex2/assets/97344492/37c5e5a0-c331-49c8-8a17-c67b70ce56b5)
 
-
+  ### Deleting Post
+  ![WhatsApp Image 2024-04-29 at 11 40 56_296b63f8](https://github.com/ilanitb16/Android-App/assets/97344492/647ce12d-a9c3-48ae-a287-70a2f674890a)
+  ![WhatsApp Image 2024-04-29 at 11 41 11_22f9463a](https://github.com/ilanitb16/Android-App/assets/97344492/d00a480e-24b9-4ef6-8a07-9d0fc982e312)
 

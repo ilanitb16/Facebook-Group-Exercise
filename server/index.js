@@ -1,4 +1,4 @@
-require('dotenv').config()
+require('dotenv').config({ path: './.env' });
 
 const express = require('express');
 const cors = require('cors');
@@ -52,23 +52,16 @@ function communicateWithTCPServer(data) {
 async function setupServer() {
     try {
         //the setting of the bits array
-        const response = await communicateWithTCPServer("16 1 2");
-        console.log(response);
+        const setupResponse = await communicateWithTCPServer(process.env.TCP_SETUP_STRING);
+        console.log(setupResponse);
 
-        // Send each line to the TCP server
-        const lines = [
-            "https://www.youtube.com",
-            "https://www.twitter.com",
-            "https://www.invalidweb.com",
-            "https://www.notgood.com"
-        ];
-
-        for (let line of lines) {
-            const isFirstBitOne = await communicateWithTCPServer(`1 ${line}`);
-            console.log(`"${line}":`, isFirstBitOne);
+        // Send each URL to the TCP server
+        const urls = process.env.TCP_URLS.split(',');
+        for (let url of urls) {
+            const isFirstBitOne = await communicateWithTCPServer(`1 ${url}`);
+            console.log(`${url}:`, isFirstBitOne);
         }
         console.log("Server setup completed successfully.");
-
     } catch (error) {
         console.error("Error setting up server:", error);
         process.exit(1);
@@ -85,7 +78,7 @@ async function startServer() {
         app.use("/api", friendsRoutes);
         app.use("/api", postsRoutes);
         app.listen(3000, () => {
-            console.info(`Node.js app is listening at http://localhost:3000`);
+            console.info("Node.js app is listening at http://localhost:3000");
         });
     } catch (error) {
         console.error("Error starting server:", error);

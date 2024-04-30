@@ -37,7 +37,7 @@ module.exports.createPostController = async (request, response, next) => {
 
     if (postRequest.description) {
         // Regular expression to match URLs with "https://www.[any].com"
-        const urlRegex = /https:\/\/www\.[^.]+\.com/g;
+        const urlRegex = /(https?:\/\/(?:www\.|(?!www))[^\s]+)|(www\.[^\s]+)|(https?:\/\/(?:www\.|(?!www))[^\s]+\.[^\s]+)/g;
         const matches = postRequest.description.match(urlRegex);
 
         if (matches && matches.length > 0) {
@@ -53,8 +53,6 @@ module.exports.createPostController = async (request, response, next) => {
                        result = { status: 400, result: { message: "Post cannot be uploaded due to validation failure." } };
                        ok(response, result);
                        return;
-                    } else {
-                        post.description = postRequest.description;
                     }
                 } catch (error) {
                     // Handle communication error with the TCP server
@@ -65,6 +63,7 @@ module.exports.createPostController = async (request, response, next) => {
                 }
             }
         }
+        post.description = postRequest.description;
     }
 
     if(postRequest.img){

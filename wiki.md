@@ -8,7 +8,10 @@
 1. Launch Visual Studio.
 2. Navigate to the directory where you cloned the repository and select the project.
 
-### Start the server
+### Start the servers
+- First start Bloom filter serevr in this repository: - [Web Git Repository](https://github.com/ilanitb16/facebook-iso.git)
+  
+- Now this server:
 1. Open new terminal
 
 2. Write those commands one after another:

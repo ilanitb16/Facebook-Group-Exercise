@@ -85,10 +85,6 @@
 ### Viewing Post Details:
 -Click on a post to view its details, including comments and likes.
 
-## Setting up the server
-- Coverd in the other repository where the actual server is in.
-
-
 ## Links
 - [Web Git Repository](https://github.com/ShmuelGranot/Facebook-iso-APP)
 - [Web Git Repository](https://github.com/ilanitb16/facebook-iso.git)

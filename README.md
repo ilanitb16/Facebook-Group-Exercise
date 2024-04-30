@@ -2,6 +2,11 @@
 ## Introduction
 This web application is part of the larger exercise to develop a full-fledged social media platform. It serves as the frontend component, interacting with the backend server to provide various features to users, such as registration, authentication, posting, friend management and more. The application is built using React, ensuring a responsive and interactive user experience.
 
+## instructions
+- in facebook-ex2 use part 4 branch
+- in Facebook-iso-APP use part4 branch
+- in facebook-iso use main
+
 ## Features
 - User registration and authentication
 - User login/logout functionality

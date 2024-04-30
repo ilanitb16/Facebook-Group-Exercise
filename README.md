@@ -22,7 +22,7 @@ Before setting up the web application, ensure you have the following prerequisit
   ```
 I realised it was missing from github after the due date, for some reason it was not added during the commits. Here is the picture of the structure. Very sorry for the inconvenience.
 
-![image](https://github.com/ilanitb16/facebook-ex2/assets/97344492/920e3325-c5e5-4afb-8072-33f1e0454274)
+![image](https://github.com/ilanitb16/facebook-ex2/assets/97344492/ebf951a3-2592-45b7-9875-2f3a46d8f7c9)
 
 
 ## Installation
@@ -42,8 +42,9 @@ cd client-react
 No specific configuration is required for the web application. However, ensure that the backend server is running and accessible at the specified API endpoints.
 
 ## Running the Application
-To start the web application, navigate to the server directory and run:
+To start the web application, navigate to the server `cd server` directory and execute:
 ```
+npm install dotenv
 Node index.js
 ```
 This command will start a development server, and the application will be accessible at `http://localhost:3000` by default.

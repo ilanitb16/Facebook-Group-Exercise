@@ -79,6 +79,8 @@ function NewPost({
       alert( "Post was successfully created.");
       let list = await getPostslist();
       setPostList(list);
+    } else if (result && result.massege){
+      alert(result.massege);
     }
     deleteData();
   };
